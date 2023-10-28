@@ -10,8 +10,8 @@ const weightRoute = require('./routes/weightRoute');
 const activityRoute = require ('./routes/activityRoute');
 const userRoute= require ('./routes/userRoute');
 
-const User = require('../models/user');
-const Session = require('../models/session');
+const User = require('./models/user')
+const Session = require('./models/session');
 
 let app = express();
 let PORT = process.env.PORT || 5000;
