@@ -1,0 +1,161 @@
+.App {
+  font-family: Arial, sans-serif;
+  text-decoration-color: #f4f4f4;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+@font-face {
+  font-family: 'Snap ITC';
+  src: url('path_to_your_font/SnapITC.woff2') format('woff2'),
+       url('path_to_your_font/SnapITC.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Snap ITC', sans-serif;
+}
+*/
+
+h1 {
+  font-size: 50px;  
+  color: rgb(36, 36, 38);  
+
+}
+
+h2 {
+  font-size: 30px;  
+  color: rgb(23, 23, 24); 
+}
+
+
+.button {
+  background-color: #1d1e1e; 
+  border: none;
+  border-radius: 4px;
+  color: rgb(56, 127, 130);
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s; /* Animation */
+}
+
+.button:hover {
+  background-color: #151516; 
+  color: white;
+}
+
+/* Base button */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #358ae4; 
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none; /* To override default anchor styles */
+}
+
+.button:hover {
+  background-color: #192a76;
+  border-color: #365183;
+}
+
+/* Additional styles if needed */
+.button.primary {
+  background-color: #34546d;
+}
+
+.button.secondary {
+  background-color: #36837c;
+}
+
+
+body {
+  background-color: #649da8;
+}
+
+body {
+  background: linear-gradient(to right, #4abe82, #ee3890); /* Horizontal gradient from orange to pink */
+}
+
+.App-logo {
+  height: 10vmin;
+  pointer-events: none;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px; /* Add some space around the content */
+}
+
+.navbar .logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links {
+ margin-right:30px
+}
+
+.navbar-links a {
+  margin-right: 20px;
+  font-size:20px ; 
+  color:black; 
+}
+
+.button-group{
+  display:flex;
+  gap: 10px;
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.logo {
+  width: 150px; 
+  height: auto; 
+}
+
+input::placeholder {
+  color: #0b0b0b;
+  font-size: 15px;
+}
+
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer {
+  margin-top: auto;
+  color: rgb(70, 19, 19)
+}
+

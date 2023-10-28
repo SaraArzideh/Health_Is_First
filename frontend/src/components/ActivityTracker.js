@@ -1,0 +1,15 @@
+import React from 'react';
+
+function ActivityTracker() {
+  return (
+    <div className="activity-page">
+      <h1>Activity Tracker</h1>
+      
+      <input placeholder="Time length of workout" />
+      {/* Visualization component for goal tracking comes here */}
+      <button><a href="/">Back to Home Page</a></button>
+    </div>
+  );
+}
+
+export default ActivityTracker;
