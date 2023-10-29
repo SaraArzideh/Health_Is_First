@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState, useContext, useEffect } from 'react';
+import * as d3 from 'd3';
 
 function HomePage() {
   return (
