@@ -29,7 +29,7 @@ function App() {
             <Route path="/diet" element={<NutritionTracker/>} />
             <Route path="/login" component={<LoginPage/>} />
           </Routes>
-          <Footer />
+          <Footer/>
         </div>
       </Router>
     </DashboardProvider>
