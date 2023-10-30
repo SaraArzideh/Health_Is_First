@@ -1,6 +1,6 @@
 import {SUBMIT_DATA, RETRIEVE_DATA, DATA_ERROR} from '../actions/dataActions';
 
-const initialStte={
+const initialState={
     data:{
         weight: [],
         activity: [],

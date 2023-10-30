@@ -1,8 +1,10 @@
 import logo from'./components/shared/logo.png';
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, BrowserRouter, Routes } from 'react-router-dom';
-//provider
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+//context provider
 import { DashboardProvider } from './context/DashboardContext';
+
 // Components
 import Navbar from './components/shared/Navbar';
 import Footer from './components/shared/Footer';
