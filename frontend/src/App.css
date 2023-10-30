@@ -1,11 +1,10 @@
-.App {
+/* Base Styles */
+body, .App {
   font-family: sans-serif;
-  text-decoration-color: #f4f4f4;
   text-align: center;
   margin: 0;
+  background: linear-gradient(to right, #4abe82,#ee3890);
   padding: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .App-header {
@@ -16,25 +15,22 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(251, 248, 248);
 }
 
-h1 {
+/* Typography */
+h1, h2 {
   font-family: /*'Snap ITC',*/ sans-serif;
-  font-size: 40px;  
   color: rgb(36, 36, 38);  
   font-weight: bold;
   font-style: normal;
 }
-
-h2 {
-  font-family: sans-serif;
-  font-size: 30px;  
-  color: rgb(23, 23, 24); 
-  font-weight: bold;
-  font-style: normal;
+h1{
+  font-size: 40px;  
 }
-
+h2 {
+  font-size: 30px;  
+}
 
 .footer {
   margin-top: auto;
@@ -44,8 +40,7 @@ h2 {
   font-weight: normal;
   font-style: normal;
 }
-
-/* Container */
+/* Form Styles  */
 .form-container {
   width: 300px;
   margin: auto;
@@ -57,11 +52,15 @@ h2 {
 /* Form Fields */
 .form-control {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 20px;
+  margin: 1px;
   border: 1px solid #ddd;
   border-radius: 4px;
   transition: border-color 0.3s;
+}
+
+.form-label {
+  font-weight: bold;
 }
 
 .form-control:focus {
@@ -69,12 +68,12 @@ h2 {
   outline: none;
 }
 
-/* Buttons */
-.btn {
+/* Buttons Styles */
+.btn, .button {
   padding: 10px 15px;
+  margin:10px;
   border: none;
   border-radius: 4px;
-  background-color: #007bff; 
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -82,11 +81,6 @@ h2 {
 
 .btn:hover {
   background-color: #0056b3; 
-}
-
-/* Labels */
-.form-label {
-  font-weight: bold;
 }
 
 /* Feedback/Error Messages */
@@ -116,58 +110,29 @@ h2 {
   color: white;
 }
 
-/* Base button */
-.button {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #358ae4; 
-  color: #ffffff;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  text-decoration: none; /* To override default anchor styles */
-}
-
-.button:hover {
-  background-color: #192a76;
-  border-color: #365183;
-}
-
-/* Additional styles if needed */
 .button.primary {
   background-color: #34546d;
 }
 
-.button.secondary {
-  background-color: #36837c;
+.btn-secondary {
+  font-size: 15px;
+  font-weight: bold;
+  color:#080708;
+  background-color: #5eadaf;
 }
 
-
-body {
-  background-color: #649da8;
+/* Feedback Error Messages */
+.error-message{
+  color: rgb(69, 24, 24);
+  margin-top:5px;
 }
 
-body {
-  background: linear-gradient(to right, #4abe82, #ee3890); /* Horizontal gradient from orange to pink */
-}
-
-.App-logo {
-  height: 10vmin;
-  pointer-events: none;
-}
-
+/* Navbar Styles */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px; /* Add some space around the content */
-}
-
-.navbar .logo-container {
-  display: flex;
-  align-items: center;
+  padding: 10px 20px;
 }
 
 .navbar-links {
@@ -185,31 +150,11 @@ body {
   gap: 10px;
 }
 
-.App-link {
-  color: #317a8e;
-}
-
-.logo {
-  width: 130px; 
-  height: auto; 
-}
-
-input::placeholder {
-  color: #000000;
-  font-size: 15px;
-}
-
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
+/* Dashboard Page Styles */
 .dashboard-page .progress-sections {
-  display: flex;
+  display:flex;
   justify-content: space-between;
-  gap: 20px;  /* Provides spacing between the sections */
+  gap: 10px;  /* Provides spacing between the sections */
 }
 
 .dashboard-page .activity-progress,
@@ -218,6 +163,29 @@ input::placeholder {
   flex: 1;  /* Each section takes up equal width */
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Optional: Adds a light shadow for visual depth */
-  border-radius: 5px;
+  border-radius: 4px;
+}
+/* Misc Styles */
+.App-link {
+  color: #317a8e;
 }
 
+input::placeholder {
+  color: #000000;
+  font-size: 15px;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+ /* logo */
+ .logo {
+  width: 100px;
+  height:auto;
+ }
+ .navbar .logo-container {
+  display: flex;
+  align-items: center;
+}

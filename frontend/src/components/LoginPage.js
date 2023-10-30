@@ -46,76 +46,91 @@ const LoginPage = (props) => {
 		}}>
 			<form className="mb-5">
 				<h2>{props.isSignUp ? "Tell Us a Bit and Let's Get Moving!" : "Login and Continue Your Journey!"}</h2>
-				<label htmlFor="email" className="form-label">Email</label>
-				<input type="email"
+				<div className="form-group">
+					<label htmlFor="email" className="form-label">Email</label>
+					<input type="email"
 						id="email"
 						name="email"
 						className="form-control"
 						onChange={onChange}
 						value={state.email}/>
-				<label htmlFor="username" className="form-label">Username</label>
-				<input type="text"
+				</div>
+				<div className="form-group">
+					<label htmlFor="username" className="form-label">Username</label>
+					<input type="text"
 						id="username"
 						name="username"
 						className="form-control"
 						onChange={onChange}
 						value={state.username}/>
-				<label htmlFor="password" className="form-label">Password</label>
-				<input type="password"
+				</div>
+				<div className="form-group">
+					<label htmlFor="password" className="form-label">Password</label>
+					<input type="password"
 						id="password"
 						name="password"
 						className="form-control"
 						onChange={onChange}
 						value={state.password}/>
-{props.isSignUp && (
-                    <>
-                        <label htmlFor="height" className="form-label">Height</label>
-                        <input type="text"
-                            id="height"
-                            name="height"
-                            className="form-control"
-                            onChange={onChange}
-                            value={state.height} />
-
-                        <label htmlFor="currentWeight" className="form-label">Current Weight</label>
-                        <input type="text"
-                            id="currentWeight"
-                            name="currentWeight"
-                            className="form-control"
-                            onChange={onChange}
-                            value={state.currentWeight} />
-
-                        <label htmlFor="age" className="form-label">Age</label>
-                        <input type="text"
-                            id="age"
-                            name="age"
-                            className="form-control"
-                            onChange={onChange}
-                            value={state.age} />
-
-                        <label htmlFor="targetActivity" className="form-label">Target Activity (minutes/day)</label>
-                        <input type="text"
-                            id="targetActivity"
-                            name="targetActivity"
-                            className="form-control"
-                            onChange={onChange}
-                            value={state.targetActivity} />
-
-                        <label htmlFor="targetCalories" className="form-label">Target Consuming Calories (Calories/day)</label>
-                        <input type="text"
-                            id="targetCalories"
-                            name="targetCalories"
-                            className="form-control"
-                            onChange={onChange}
-                            value={state.targetCalories} />
-                    </>
+				</div>
+				{props.isSignUp && (
+                    <div className="additional-details">
+						<div className="form-row">
+							<div className="form-group col-md-4">
+								<label htmlFor="age" className="form-label">Age</label>
+								<input type="text"
+									id="age"
+									name="age"
+									className="form-control"
+									onChange={onChange}
+									value={state.age} />
+							</div>
+							<div className="form-group col-md-4">
+								<label htmlFor="height" className="form-label">Height</label>
+								<input type="text"
+									id="height"
+									name="height"
+									className="form-control"
+									onChange={onChange}
+									value={state.height} />
+							</div>
+							<div className="form-group col-md-4">
+								<label htmlFor="currentWeight" className="form-label">Current Weight</label>
+								<input type="text"
+									id="currentWeight"
+									name="currentWeight"
+									className="form-control"
+									onChange={onChange}
+									value={state.currentWeight} />
+							</div>
+						</div>
+						<div className="form-group">
+							<label htmlFor="targetActivity" className="form-label">Target Activity (minutes/day)</label>
+							<input type="text"
+								id="targetActivity"
+								name="targetActivity"
+								className="form-control"
+								onChange={onChange}
+								value={state.targetActivity} />
+						</div>
+						<div className="form-group">
+							<label htmlFor="targetCalories" className="form-label">Target Consuming Calories (Calories/day)</label>
+							<input type="text"
+								id="targetCalories"
+								name="targetCalories"
+								className="form-control"
+								onChange={onChange}
+								value={state.targetCalories} />
+						</div>
+                    </div>
                 )}
-
-                {props.isSignUp ? (
-				<button onClick={onSubmit} style={{marginRight:5}} name="register" className="btn btn-secondary">Register</button>
-				) : (
-				<button onClick={onSubmit} style={{marginLeft:5}} name="login" className="btn btn-secondary">Login</button>
-				)}
+				<div>
+					{props.isSignUp ? (
+					<button onClick={onSubmit} style={{marginRight:5}} name="register" className="btn btn-secondary">Sign Up</button>
+					) : (
+					<button onClick={onSubmit} style={{marginLeft:5}} name="login" className="btn btn-secondary">Login</button>
+					)}
+				</div>
 			</form>
 		</div>
 	)
