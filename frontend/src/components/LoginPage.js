@@ -41,12 +41,11 @@ const LoginPage = (props) => {
 	
 	return(
 		<div style={{
-			
 			"width":"40%",
 			"margin":"auto"
 		}}>
 			<form className="mb-5">
-				<h1>{props.isSignUp ? "Registration Page" : "Login Page"}</h1>
+				<h2>{props.isSignUp ? "Tell Us a Bit and Let's Get Moving!" : "Login and Continue Your Journey!"}</h2>
 				<label htmlFor="email" className="form-label">Email</label>
 				<input type="email"
 						id="email"

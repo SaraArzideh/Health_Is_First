@@ -4,7 +4,9 @@ import * as d3 from 'd3';
 function BodyMetrics() {
   return (
     <div className="weight-page">
-      <h1>Body Metrics Overview</h1>
+      <h1>Body Metrics Tracking</h1>
+      <p>Log Today's Intake, Plan Tomorrow's Progress!</p>
+
       <nav>
         <a href="/dashboard">Dashboard</a>
         <a href="/activity">Activity</a>

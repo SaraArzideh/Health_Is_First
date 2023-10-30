@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 function NutritionTracker() {
   return (
     <div className="diet-page">
-      <h1>Nutrition Tracker</h1>
+      <h1>What You Eat Matters, Let's Track It!</h1>
 
       <input placeholder="Calories" />
       {/* Visualization component for diet tracking comes here */}

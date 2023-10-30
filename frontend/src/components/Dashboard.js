@@ -13,12 +13,12 @@ function Dashboard() {
 
     return (
       <div className="dashboard-page">
-        <h1>Progress Overview</h1>
+        <h1>Your Fitness Progress Overview</h1>
 
         <div className="progress-sections">
         {/* Visualization for Activity Progress */}
         <section className="activity progress">
-          <h2>Activity Progress</h2>
+          <h2>Your Activity Progress</h2>
 
           {/* Daily Activity Progress Visualization*/}
           <div className="daily activity">Daily:{/*D3.js, placeholder */}</div>
@@ -32,7 +32,7 @@ function Dashboard() {
 
         {/* Visualization for Diet Progress */}
         <section className="diet progress">
-          <h2>Diet Progress</h2>
+          <h2>Your Diet Progress</h2>
 
           {/* Daily Diet Progress Visualization*/}
           <div className="daily diet">Daily:{/*D3.js, placeholder */}</div>
@@ -46,7 +46,7 @@ function Dashboard() {
 
         {/* Visualization for Body Metrics Progress */}
         <section className="body metrics">
-          <h2>Body Metrics</h2>
+          <h2>Your Body Metrics</h2>
 
           {/* Daily Body Metrics Visualization*/}
           <div className="daily metrics">Daily:{/*D3.js, placeholder */}</div>
