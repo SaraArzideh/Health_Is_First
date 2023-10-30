@@ -158,4 +158,18 @@ input::placeholder {
   margin-top: auto;
   color: rgb(70, 19, 19)
 }
+.dashboard-page .progress-sections {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;  /* Provides spacing between the sections */
+}
+
+.dashboard-page .activity-progress,
+.dashboard-page .diet-progress,
+.dashboard-page .body-metrics-progress {
+  flex: 1;  /* Each section takes up equal width */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Optional: Adds a light shadow for visual depth */
+  border-radius: 5px;
+}
 

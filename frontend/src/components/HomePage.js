@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState, useContext, useEffect } from 'react';
+import { useDashboard } from '../context/DashboardContext';
+import Dashboard from './Dashboard';
 import * as d3 from 'd3';
 
 // Simulate user context to check for logged-in state.
@@ -8,6 +10,7 @@ function HomePage() {
   //State for goals
   const [activityGoal, setActivityGoal] = useState('');
   const [dietGoal, setDietGoal] = useState('');
+  const { isDashboardOpen, toggleDashboard } = useDashboard();
 
   //State to show or hide the dashboard
   const [showDashboard, setShowDashboard] = useState(false);
@@ -41,13 +44,13 @@ function HomePage() {
           <h2>Set Goals Section</h2>
           <input 
             type="number"
-            placeholder="Activity Goal (in minutes)"
+            placeholder="Activity Goal (minutes per day)"
             value={activityGoal}
             onChange={(e) => setActivityGoal(e.target.value)}
           />
           <input 
             type="number"
-            placeholder="Diet Goal (in calories)"
+            placeholder="Diet Goal (consumed calories per day)"
             value={dietGoal}
             onChange={(e) => setDietGoal(e.target.value)}
           />
@@ -58,19 +61,8 @@ function HomePage() {
         <h2>Achievements Section</h2>
         {/* achievement visualization components here */}
       </section>
-      {user && (
-        <>
-      <button onClick={()=> setShowDashboard(!showDashboard)}>
-            {showDashboard ? 'Close Dashboard' : 'Open The Dashboard'}
-      </button>
-      {showDashboard && (
-            <div className="dashboard">
-              {/* Dashboard Components with user achievements */}
-              <p>{/* Achievement related to activity and diet goals */}</p>
-            </div>
-          )}
-        </>
-      )}
+      {!isDashboardOpen && <button onClick={toggleDashboard}>Open The Dashboard</button>}
+      {isDashboardOpen && <Dashboard />}
     </div>  
   );
 }

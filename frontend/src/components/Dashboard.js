@@ -1,19 +1,23 @@
 import React from 'react';
 import { useContext } from 'react';
+import { useDashboard } from '../context/DashboardContext';
 import * as d3 from 'd3';
 
 // Simulated User Context to get user's progress data
-const userContext= React.createContext();
+const UserContext= React.createContext();
 
 function Dashboard() {
   //Fetching user data from context
-  const userProgress=useContext(UserContext)  
+  const userProgress=useContext(UserContext)
+  const { toggleDashboard } = useDashboard();
+
     return (
       <div className="dashboard-page">
         <h1>Progress Overview</h1>
 
+        <div className="progress-sections">
         {/* Visualization for Activity Progress */}
-        <div className="activity progress">
+        <section className="activity progress">
           <h2>Activity Progress</h2>
 
           {/* Daily Activity Progress Visualization*/}
@@ -24,10 +28,10 @@ function Dashboard() {
           <div className="monthly activity">Monthly:{/*D3.js, placeholder */}</div>
           {/* Yearly Activity Progress Visualization*/}
           <div className="yearly activity">Yearly:{/*D3.js, placeholder */}</div>     
-        </div>
+        </section>
 
         {/* Visualization for Diet Progress */}
-        <div className="diet progress">
+        <section className="diet progress">
           <h2>Diet Progress</h2>
 
           {/* Daily Diet Progress Visualization*/}
@@ -38,10 +42,10 @@ function Dashboard() {
           <div className="monthly diet">Monthly:{/*D3.js, placeholder */}</div>
           {/* Yearly Diet Progress Visualization*/}
           <div className="yearly diet">Yearly:{/*D3.js, placeholder */}</div>     
-        </div>
+        </section>
 
         {/* Visualization for Body Metrics Progress */}
-        <div className="body metrics">
+        <section className="body metrics">
           <h2>Body Metrics</h2>
 
           {/* Daily Body Metrics Visualization*/}
@@ -52,9 +56,9 @@ function Dashboard() {
           <div className="monthly metrics">Monthly:{/*D3.js, placeholder */}</div>
           {/* Yearly Body Metrics Visualization*/}
           <div className="yearly metrics">Yearly:{/*D3.js, placeholder */}</div>     
+        </section>
         </div>
-
-        <button><a href="/">Back to Home Page</a></button>
+        <button><a href="/">Close The Dashboard</a></button>
       </div>
     );
 }
