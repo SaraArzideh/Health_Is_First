@@ -1,5 +1,5 @@
 .App {
-  font-family: Arial, sans-serif;
+  font-family: sans-serif;
   text-decoration-color: #f4f4f4;
   text-align: center;
   margin: 0;
@@ -8,29 +8,91 @@
   height: 100%;
 }
 
-/*
-@font-face {
-  font-family: 'Snap ITC';
-  src: url('path_to_your_font/SnapITC.woff2') format('woff2'),
-       url('path_to_your_font/SnapITC.woff') format('woff');
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+h1 {
+  font-family: /*'Snap ITC',*/ sans-serif;
+  font-size: 50px;  
+  color: rgb(36, 36, 38);  
+  font-weight: bold;
+  font-style: normal;
+}
+
+h2 {
+  font-family: sans-serif;
+  font-size: 30px;  
+  color: rgb(23, 23, 24); 
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+.footer {
+  margin-top: auto;
+  color: rgb(0, 0, 0);
+  font-family: sans-serif;
+  font-size: 20px;  
   font-weight: normal;
   font-style: normal;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Snap ITC', sans-serif;
-}
-*/
-
-h1 {
-  font-size: 50px;  
-  color: rgb(36, 36, 38);  
-
+/* Container */
+.form-container {
+  width: 300px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
-h2 {
-  font-size: 30px;  
-  color: rgb(23, 23, 24); 
+/* Form Fields */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff; 
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3; 
+}
+
+/* Labels */
+.form-label {
+  font-weight: bold;
+}
+
+/* Feedback/Error Messages */
+.error-message {
+  color: rgb(69, 24, 24);
+  margin-top: 5px;
 }
 
 
@@ -122,28 +184,18 @@ body {
   display:flex;
   gap: 10px;
 }
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
 .App-link {
-  color: #61dafb;
+  color: #317a8e;
 }
 
 .logo {
-  width: 150px; 
+  width: 130px; 
   height: auto; 
 }
 
 input::placeholder {
-  color: #0b0b0b;
+  color: #000000;
   font-size: 15px;
 }
 
@@ -154,10 +206,6 @@ input::placeholder {
   min-height: 100vh;
 }
 
-.footer {
-  margin-top: auto;
-  color: rgb(70, 19, 19)
-}
 .dashboard-page .progress-sections {
   display: flex;
   justify-content: space-between;

@@ -41,7 +41,7 @@ const LoginPage = (props) => {
 	
 	return(
 		<div style={{
-			"backgroundColor":"skyblue",
+			
 			"width":"40%",
 			"margin":"auto"
 		}}>
