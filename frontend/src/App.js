@@ -24,12 +24,13 @@ function App() {
         <div className="App">
           <Navbar />
           <Routes>
+            <Route path="/signup" element={<LoginPage isSignUp={true} />} />
+            <Route path="/login" element={<LoginPage isSignUp={false} />} />
             <Route path="/" exact element={<HomePage/>} />
             <Route path="/dashboard" element={<Dashboard/>} />
             <Route path="/activity" element={<ActivityTracker/>} />
             <Route path="/weight" element={<BodyMetrics/>} />
             <Route path="/diet" element={<NutritionTracker/>} />
-            <Route path="/login" component={<LoginPage/>} />
           </Routes>
           <Footer/>
         </div>

@@ -16,7 +16,8 @@ function Navbar() {
             <a href="/activity">Activity</a>
             <a href="/weight">Weight</a>
             <a href="/diet">Diet</a>
-            <a href="/login">Signup/Login</a>
+            <a href="/signup">Sign Up</a>
+            <a href="/login">Login</a>
         </div>
     </nav>
 

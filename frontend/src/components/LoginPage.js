@@ -4,8 +4,14 @@ import * as d3 from 'd3';
 const LoginPage = (props) => {
 	
 	const [state,setState] = useState({
+		email: "",
 		username:"",
-		password:""
+		password:"",
+		age:"",
+		height: "",
+        currentWeight: "",
+        targetActivity: "",
+        targetCalories: ""
 	})
 	
 	const onChange = (event) => {
@@ -40,6 +46,14 @@ const LoginPage = (props) => {
 			"margin":"auto"
 		}}>
 			<form className="mb-5">
+				<h1>{props.isSignUp ? "Registration Page" : "Login Page"}</h1>
+				<label htmlFor="email" className="form-label">Email</label>
+				<input type="email"
+						id="email"
+						name="email"
+						className="form-control"
+						onChange={onChange}
+						value={state.email}/>
 				<label htmlFor="username" className="form-label">Username</label>
 				<input type="text"
 						id="username"
@@ -54,8 +68,55 @@ const LoginPage = (props) => {
 						className="form-control"
 						onChange={onChange}
 						value={state.password}/>
+{props.isSignUp && (
+                    <>
+                        <label htmlFor="height" className="form-label">Height</label>
+                        <input type="text"
+                            id="height"
+                            name="height"
+                            className="form-control"
+                            onChange={onChange}
+                            value={state.height} />
+
+                        <label htmlFor="currentWeight" className="form-label">Current Weight</label>
+                        <input type="text"
+                            id="currentWeight"
+                            name="currentWeight"
+                            className="form-control"
+                            onChange={onChange}
+                            value={state.currentWeight} />
+
+                        <label htmlFor="age" className="form-label">Age</label>
+                        <input type="text"
+                            id="age"
+                            name="age"
+                            className="form-control"
+                            onChange={onChange}
+                            value={state.age} />
+
+                        <label htmlFor="targetActivity" className="form-label">Target Activity (minutes/day)</label>
+                        <input type="text"
+                            id="targetActivity"
+                            name="targetActivity"
+                            className="form-control"
+                            onChange={onChange}
+                            value={state.targetActivity} />
+
+                        <label htmlFor="targetCalories" className="form-label">Target Consuming Calories (Calories/day)</label>
+                        <input type="text"
+                            id="targetCalories"
+                            name="targetCalories"
+                            className="form-control"
+                            onChange={onChange}
+                            value={state.targetCalories} />
+                    </>
+                )}
+
+                {props.isSignUp ? (
 				<button onClick={onSubmit} style={{marginRight:5}} name="register" className="btn btn-secondary">Register</button>
+				) : (
 				<button onClick={onSubmit} style={{marginLeft:5}} name="login" className="btn btn-secondary">Login</button>
+				)}
 			</form>
 		</div>
 	)
