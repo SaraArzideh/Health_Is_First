@@ -17,7 +17,7 @@ function Dashboard() {
 
         <div className="progress-sections">
         {/* Visualization for Activity Progress */}
-        <section className="activity progress">
+        <section className="activity-progress">
           <h2>Your Activity Progress</h2>
 
           {/* Daily Activity Progress Visualization*/}
@@ -31,7 +31,7 @@ function Dashboard() {
         </section>
 
         {/* Visualization for Diet Progress */}
-        <section className="diet progress">
+        <section className="diet-progress">
           <h2>Your Diet Progress</h2>
 
           {/* Daily Diet Progress Visualization*/}
@@ -45,7 +45,7 @@ function Dashboard() {
         </section>
 
         {/* Visualization for Body Metrics Progress */}
-        <section className="body metrics">
+        <section className="body-metrics-progress">
           <h2>Your Body Metrics</h2>
 
           {/* Daily Body Metrics Visualization*/}

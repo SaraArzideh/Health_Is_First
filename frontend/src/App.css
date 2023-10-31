@@ -26,10 +26,14 @@ h1, h2 {
   font-style: normal;
 }
 h1{
-  font-size: 40px;  
+  font-size: 40px;
+  margin-top: 15px;
+  margin-bottom: 1px;
 }
 h2 {
-  font-size: 30px;  
+  font-size: 2vw;
+  margin-top: 15px;
+  margin-bottom: 1px;
 }
 
 .footer {
@@ -42,8 +46,9 @@ h2 {
 }
 /* Form Styles  */
 .form-container {
-  width: 300px;
-  margin: auto;
+  max-width: 500px;
+  width:100px;
+  margin:0 auto;
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -52,15 +57,27 @@ h2 {
 /* Form Fields */
 .form-control {
   width: 100%;
-  padding: 20px;
+  padding: 5px;
   margin: 1px;
+  font-size:1.3vw;
+  margin-top: 0px;
   border: 1px solid #ddd;
   border-radius: 4px;
   transition: border-color 0.3s;
+  flex: 1; /* each child takes up equal space */
+  margin: 5 20px; /* space between each child */
 }
-
+.form-row{
+  display: flex;
+  flex:1;
+  justify-content: space-between; /* spaces out the children evenly */
+  align-items: center; /* vertically aligns children in the center */
+}
 .form-label {
-  font-weight: bold;
+  font-size:1.3vw;
+  font-weight: normal;
+  margin-bottom: 1px;
+  margin-top: 10px;
 }
 
 .form-control:focus {
@@ -112,6 +129,7 @@ h2 {
 
 .button.primary {
   background-color: #34546d;
+  color:#080708;
 }
 
 .btn-secondary {
@@ -161,7 +179,7 @@ h2 {
 .dashboard-page .diet-progress,
 .dashboard-page .body-metrics-progress {
   flex: 1;  /* Each section takes up equal width */
-  padding: 20px;
+  padding: 60px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Optional: Adds a light shadow for visual depth */
   border-radius: 4px;
 }

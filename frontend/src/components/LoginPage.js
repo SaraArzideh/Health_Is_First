@@ -77,7 +77,7 @@ const LoginPage = (props) => {
                     <div className="additional-details">
 						<div className="form-row">
 							<div className="form-group col-md-4">
-								<label htmlFor="age" className="form-label">Age</label>
+								<label htmlFor="age" className="form-label">Age (years)</label>
 								<input type="text"
 									id="age"
 									name="age"
@@ -86,7 +86,7 @@ const LoginPage = (props) => {
 									value={state.age} />
 							</div>
 							<div className="form-group col-md-4">
-								<label htmlFor="height" className="form-label">Height</label>
+								<label htmlFor="height" className="form-label">Height (meter)</label>
 								<input type="text"
 									id="height"
 									name="height"
@@ -95,7 +95,7 @@ const LoginPage = (props) => {
 									value={state.height} />
 							</div>
 							<div className="form-group col-md-4">
-								<label htmlFor="currentWeight" className="form-label">Current Weight</label>
+								<label htmlFor="currentWeight" className="form-label">Current Weight (Kg)</label>
 								<input type="text"
 									id="currentWeight"
 									name="currentWeight"
