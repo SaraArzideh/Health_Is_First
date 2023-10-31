@@ -9,7 +9,7 @@ function ActivityTracker() {
       
       <input placeholder="Time length of workout" />
       {/* Visualization component for goal tracking comes here */}
-      <button><a href="/">Back to Home Page</a></button>
+      <button className="btn"><a href="/">Back to Home Page</a></button>
     </div>
   );
 }

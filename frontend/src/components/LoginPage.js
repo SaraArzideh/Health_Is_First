@@ -126,9 +126,9 @@ const LoginPage = (props) => {
                 )}
 				<div>
 					{props.isSignUp ? (
-					<button onClick={onSubmit} style={{marginRight:5}} name="register" className="btn btn-secondary">Sign Up</button>
+					<button onClick={onSubmit} style={{marginRight:5}} name="register" className="btn">Sign Up</button>
 					) : (
-					<button onClick={onSubmit} style={{marginLeft:5}} name="login" className="btn btn-secondary">Login</button>
+					<button onClick={onSubmit} style={{marginLeft:5}} name="login" className="btn">Login</button>
 					)}
 				</div>
 			</form>

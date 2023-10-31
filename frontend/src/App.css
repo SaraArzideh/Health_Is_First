@@ -81,23 +81,8 @@ h2 {
 }
 
 .form-control:focus {
-  border-color: #007bff;
+  border-color: #030303;
   outline: none;
-}
-
-/* Buttons Styles */
-.btn, .button {
-  padding: 10px 15px;
-  margin:10px;
-  border: none;
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.btn:hover {
-  background-color: #0056b3; 
 }
 
 /* Feedback/Error Messages */
@@ -106,37 +91,28 @@ h2 {
   margin-top: 5px;
 }
 
-
-.button {
-  background-color: #1d1e1e; 
+/* Buttons Styles */
+.btn , button{
   border: none;
+  font-family: sans-serif;
   border-radius: 4px;
-  color: rgb(56, 127, 130);
+  color: rgb(0, 0, 0);
   padding: 10px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  font-weight:600;
+  margin: 10px;
   cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #58b9a8; 
   transition-duration: 0.4s; /* Animation */
 }
 
-.button:hover {
-  background-color: #151516; 
+.btn:hover {
+  background-color: #7ed7e3; 
   color: white;
-}
-
-.button.primary {
-  background-color: #34546d;
-  color:#080708;
-}
-
-.btn-secondary {
-  font-size: 15px;
-  font-weight: bold;
-  color:#080708;
-  background-color: #5eadaf;
 }
 
 /* Feedback Error Messages */
@@ -185,7 +161,7 @@ h2 {
 }
 /* Misc Styles */
 .App-link {
-  color: #317a8e;
+  color: #050505;
 }
 
 input::placeholder {

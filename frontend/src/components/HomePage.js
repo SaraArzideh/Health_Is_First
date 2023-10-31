@@ -22,22 +22,7 @@ function HomePage() {
     <div className="home-page">
       <h1>Your Fitness Journey Starts Here</h1>
 
-      <nav>
-        {user ? (
-          <>
-            <a href="/logout">Logout</a>
-            <a href="/dashboard">Dashboard</a>
-          </>
-        ) : (
-          <>
-            <a href="/signup">Signup</a>
-            <a href="/login">Login</a>
-          </>
-        )}
-        <a href="/activities">Physical Activities</a>
-        <a href="/weight">Weight Page</a>
-        <a href="/diet">Diet Page</a>
-      </nav>
+
 
       {user && (
         <section className="set-goals">
