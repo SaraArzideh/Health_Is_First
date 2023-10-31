@@ -2,11 +2,16 @@ import React from 'react';
 import { useState, useContext, useEffect } from 'react';
 import { useDashboard } from '../context/DashboardContext';
 import Dashboard from './Dashboard';
+import {useNavigate} from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import * as d3 from 'd3';
 
 // Simulate user context to check for logged-in state.
 const UserContext =React.createContext();
 function HomePage() {
+    // Function to redirect to the signup page
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+
   //State for goals
   const [activityGoal, setActivityGoal] = useState('');
   const [dietGoal, setDietGoal] = useState('');
@@ -21,8 +26,6 @@ function HomePage() {
   return (
     <div className="home-page">
       <h1>Your Fitness Journey Starts Here</h1>
-
-
 
       {user && (
         <section className="set-goals">
@@ -46,8 +49,10 @@ function HomePage() {
         <h2>Achievements Section</h2>
         {/* achievement visualization components here */}
       </section>
-      {!isDashboardOpen && <button onClick={toggleDashboard}>Open The Dashboard</button>}
-      {isDashboardOpen && <Dashboard />}
+      { isLoggedIn ?
+          <button className='btn' onClick={toggleDashboard}>Open The Dashboard</button>:
+          <button className='btn' onClick={()=>window.location.href="/signup" }>Start</button>
+      }
     </div>  
   );
 }
