@@ -13,6 +13,7 @@ import { combineReducers } from 'redux';
 import authReducer from './reducers/authReducer';
 import goalReducer from './reducers/goalReducer';
 import dataReducer from './reducers/dataReducer';
+import activityReducer from './reducers/activityReducer';
 
 // Provider allows the Redux store to be passed down to components
 import { Provider } from 'react-redux';
@@ -21,8 +22,8 @@ import { Provider } from 'react-redux';
 const rootReducer = combineReducers({
   auth: authReducer,
   goals: goalReducer,
-  data: dataReducer
-
+  data: dataReducer,
+  activities: activityReducer
 });
 // Creating the Redux store with the combined reducer and middleware
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
