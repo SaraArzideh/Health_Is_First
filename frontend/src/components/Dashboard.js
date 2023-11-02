@@ -1,6 +1,8 @@
 import React from 'react';
 import { useContext } from 'react';
 import { useDashboard } from '../context/DashboardContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserActivityGoal } from '../actions/authActions';
 import * as d3 from 'd3';
 
 // Simulated User Context to get user's progress data
@@ -11,6 +13,17 @@ function Dashboard() {
   const userProgress=useContext(UserContext)
   const { toggleDashboard } = useDashboard();
 
+  const dispatch = useDispatch();
+
+  // Get the goal from the user state inside authReducer
+  const activityGoal = useSelector(state => state.auth.user.activityGoal); 
+  
+  // Function to handle goal setting from the dashboard
+  const handleDashboardSetGoal = (goal) => {
+      dispatch(setUserActivityGoal(goal));
+  };
+
+    // Rendering
     return (
       <div className="dashboard-page">
         <h1>Your Fitness Progress Overview</h1>
@@ -19,6 +32,15 @@ function Dashboard() {
         {/* Visualization for Activity Progress */}
         <section className="activity-progress">
           <h2>Your Activity Progress</h2>
+            <div>
+              <h2>Your Daily Activity Goal</h2>
+              <input 
+                  type="number"
+                  value={activityGoal}
+                  onChange={(e) => handleDashboardSetGoal(e.target.value)}
+                  placeholder="Goal (in minutes)"
+              />
+          </div>
 
           {/* Daily Activity Progress Visualization*/}
           <div className="daily activity">Daily:{/*D3.js, placeholder */}</div>

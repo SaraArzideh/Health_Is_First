@@ -2,13 +2,14 @@ import React from 'react';
 import { useState } from 'react';
 import{useSelector, useDispatch} from 'react-redux';
 import { ADD_ACTIVITY, SET_ACTIVITY_GOAL } from '../actions/activityActions';
+import { setUserActivityGoal } from '../actions/authActions';
 import * as d3 from 'd3';
 
 
 function ActivityTracker() {
   const dispatch = useDispatch();
   const activities = useSelector(state => state.activities.activities);
-  const activityGoal = useSelector(state => state.activities.activityGoal);
+  const activityGoal = useSelector(state => state.auth.user?.activityGoal || 0);
 
   // Fetch the activities and activity goal from the Redux state
   const [activityType, setActivityType] = useState('');
@@ -28,6 +29,7 @@ function ActivityTracker() {
   // Set an Activity Goal
   const handleSetGoal = (goal) => {
      dispatch({ type: SET_ACTIVITY_GOAL, payload:goal });
+     dispatch(setUserActivityGoal(goal));
   };
 
   return (
@@ -46,7 +48,7 @@ function ActivityTracker() {
             placeholder="Duration(in minutes)"
         />
         <button className="btn"><a href="/">Back to Home Page</a></button>
-        <button onClick={handleAddActivity}>Add Activity</button>
+        <button onClick={handleAddActivity}>Add New Activity</button>
             </div>
             <div>
                 <h2>Set Daily Activity Goal</h2>

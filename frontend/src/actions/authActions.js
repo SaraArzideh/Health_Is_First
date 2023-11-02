@@ -3,8 +3,17 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const AUTH_ERROR = 'AUTH_ERROR';
+export const SET_USER_ACTIVITY_GOAL = 'SET_USER_ACTIVITY_GOAL';
 
 // Action Creators
+
+//User Activity Goal
+export const setUserActivityGoal = (goal) => {
+   return {
+       type: SET_USER_ACTIVITY_GOAL,
+       payload: goal
+   };
+};
 
 // Login User
 export const loginUser = (credentials) => {
