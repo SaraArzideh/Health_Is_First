@@ -10,6 +10,7 @@ function ActivityTracker() {
   const dispatch = useDispatch();
   const activities = useSelector(state => state.activities.activities);
   const userActivityGoal = useSelector(state => state.auth.user?.activityGoal || 0);
+  
   // Create a state to determine if the goal is currently being edited:
   const [isEditingGoal, setIsEditingGoal] = useState(false);
   const [showActivityHistory, setShowActivityHistory] = useState(false);
@@ -38,14 +39,13 @@ function ActivityTracker() {
   const handleSetGoal = () => {
     dispatch({ type: SET_ACTIVITY_GOAL, payload:activityGoal });
     dispatch(setUserActivityGoal(activityGoal));
-    setIsEditingGoal(false);  // Toggle the edit mode off
-    setGoalSetOnce(true); //Goal has been set
+    setIsEditingGoal(false);  // Set to false after goal is set
   };
 
 
   // Toggle Editing Goal Mode
   const toggleEditGoal = () => {
-    setIsEditingGoal(!isEditingGoal);
+    setIsEditingGoal(true);
   };
 
   // Toggle Activity History Display
@@ -60,16 +60,27 @@ function ActivityTracker() {
 
         <div>
           <h2>Set Daily Activity Goal</h2>
-          <input 
-              type="number"
-              value={activityGoal}
-              onChange={(e) => setActivityGoal(e.target.value)}
-              placeholder="Daily Activity (in minutes)"
-          />
           {
-            (isEditingGoal|| !goalSetOnce)?
-           <button onClick={handleSetGoal}>SET</button>:
-           <button onClick={toggleEditGoal}>EDIT</button>
+            isEditingGoal ? 
+            (
+              // If editing, display the input field and the SET button
+              <>
+                <input 
+                    type="number"
+                    value={activityGoal}
+                    onChange={(e) => setActivityGoal(e.target.value)}
+                    placeholder="Daily Activity (in minutes)"
+                />
+                <button onClick={handleSetGoal}>SET</button>
+              </>
+            ) : 
+            (
+              // If not editing, display the set goal and the EDIT button
+              <>
+                <p>Your Current Daily Activity Goal is {activityGoal} minutes per day.</p>
+                <button onClick={toggleEditGoal}>Edit</button>
+              </>
+            )
           }
       </div>
       <h2>Add New Activity </h2>
