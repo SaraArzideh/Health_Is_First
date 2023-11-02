@@ -16,7 +16,7 @@ function Dashboard() {
   const dispatch = useDispatch();
 
   // Get the goal from the user state inside authReducer
-  const activityGoal = useSelector(state => state.auth.user.activityGoal); 
+  const activityGoal = useSelector(state => state.auth.user?.activityGoal||0); 
   
   // Function to handle goal setting from the dashboard
   const handleDashboardSetGoal = (goal) => {
