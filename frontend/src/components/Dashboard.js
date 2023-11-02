@@ -31,16 +31,17 @@ function Dashboard() {
         <div className="progress-sections">
         {/* Visualization for Activity Progress */}
         <section className="activity-progress">
-          <h2>Your Activity Progress</h2>
-            <div>
-              <h2>Your Daily Activity Goal</h2>
+          <div>
+              <h2>Set Your Daily Activity Goal</h2>
               <input 
                   type="number"
                   value={activityGoal}
                   onChange={(e) => handleDashboardSetGoal(e.target.value)}
                   placeholder="Goal (in minutes)"
               />
-          </div>
+          </div>          
+          <h2>Your Activity Progress</h2>
+
 
           {/* Daily Activity Progress Visualization*/}
           <div className="daily activity">Daily:{/*D3.js, placeholder */}</div>

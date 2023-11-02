@@ -2,7 +2,7 @@ import { ADD_ACTIVITY, UPDATE_ACTIVITY, SET_ACTIVITY_GOAL, FETCH_ACTIVITIES } fr
 
 const initialState={
     activities:[],   //{ id:uniqueId, type: string, duration: number, date: Date },
-    activityGoal: 0  //daily activity duration in minutes
+    activityGoal: 0 //daily activity duration in minutes
 };
 
 const activityReducer = (state = initialState, action) => {
