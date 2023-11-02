@@ -3,6 +3,8 @@ import { useState } from 'react';
 import{useSelector, useDispatch} from 'react-redux';
 import { ADD_ACTIVITY, SET_ACTIVITY_GOAL } from '../actions/activityActions';
 import { setUserActivityGoal } from '../actions/authActions';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import * as d3 from 'd3';
 
 
@@ -23,6 +25,14 @@ function ActivityTracker() {
   const [activityDuration, setActivityDuration] = useState('');
   const [activityGoal, setActivityGoal] = useState(userActivityGoal);
 
+  // Filter out the activities for the current day:
+  const todaysActivities = activities.filter(activity => 
+    new Date (activity.date).toDateString() === new Date().toDateString()
+  );
+
+  // Compare the total duration for today's activities:
+  const todaysTotalDuration = todaysActivities.reduce((acc, activity) => acc + Number(activity.duration), 0);
+
   //Add a New Activity
   const handleAddActivity = () => {
     const newActivity = {
@@ -32,8 +42,24 @@ function ActivityTracker() {
       date: new Date()
     };
     dispatch({type: ADD_ACTIVITY, payload:newActivity});
-    window.alert("Activity added! Click 'See the history of activities' to view all activities.");
+    const difference = activityGoal - todaysTotalDuration;
+    let message;
+    if (difference > 0){
+      message = "Activity added! Keep moving! Just "+difference+" minutes to reach your daily goal!";
+    } else if (difference===0){
+      message = "Activity added! Congratulations! You reached your daily goal!";
+    } else {
+      message = "Activity added! Bravo! You are on fire today!";
+    }
+    toast(message,{
+      autoClose: 5000,
+      className: 'Message-Size-class',
+      position: toast.POSITION.TOP_CENTER
+    });
   };
+
+
+  
 
   // Set an Activity Goal
   const handleSetGoal = () => {
@@ -52,6 +78,7 @@ function ActivityTracker() {
   const toggleActivityHistory = () => {
     setShowActivityHistory(!showActivityHistory);
   };
+
 
   return (
     <div className="activity-page">

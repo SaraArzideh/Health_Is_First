@@ -183,3 +183,8 @@ input::placeholder {
   display: flex;
   align-items: center;
 }
+.Message-Size-class {
+font-size: 30px;
+color:#010101;
+background-color: #bae5ed;
+}
