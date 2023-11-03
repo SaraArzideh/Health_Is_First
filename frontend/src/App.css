@@ -21,7 +21,6 @@ body, .App {
 /* Typography */
 h1, h2 {
   font-family: /*'Snap ITC',*/ sans-serif;
-  color: rgb(36, 36, 38);  
   font-weight: bold;
   font-style: normal;
 }
@@ -29,11 +28,18 @@ h1{
   font-size: 40px;
   margin-top: 15px;
   margin-bottom: 1px;
+  color: rgb(22, 22, 23);  
 }
 h2 {
-  font-size: 2vw;
+  font-size: 1.8vw;
   margin-top: 15px;
   margin-bottom: 1px;
+  color: rgb(13, 13, 13);  
+}
+
+p {
+  font-size: 20px;
+  color: rgb(3, 3, 3);  
 }
 
 .footer {
@@ -106,7 +112,7 @@ h2 {
   margin: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
-  background-color: #58b9a8; 
+  background-color: #58b2b9; 
   transition-duration: 0.4s; /* Animation */
 }
 

@@ -4,6 +4,7 @@ export const LOGOUT = 'LOGOUT';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const SET_USER_ACTIVITY_GOAL = 'SET_USER_ACTIVITY_GOAL';
+export const SET_USER_WEIGHT_GOAL = 'SET_USER_WEIGHT_GOAL';
 
 // Action Creators
 
@@ -11,6 +12,14 @@ export const SET_USER_ACTIVITY_GOAL = 'SET_USER_ACTIVITY_GOAL';
 export const setUserActivityGoal = (goal) => {
    return {
        type: SET_USER_ACTIVITY_GOAL,
+       payload: goal
+   };
+};
+
+// User Weight Goal
+export const setUserWeightGoal = (goal) => {
+   return {
+       type: SET_USER_WEIGHT_GOAL,
        payload: goal
    };
 };
