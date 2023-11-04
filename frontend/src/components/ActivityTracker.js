@@ -41,18 +41,22 @@ function ActivityTracker() {
       duration: Number(activityDuration), // Convert string to number
       date: new Date()
     };
-    dispatch({type: ADD_ACTIVITY, payload:newActivity});
-    const difference = activityGoal - todaysTotalDuration;
+    dispatch({type: ADD_ACTIVITY, payload:newActivity}); //asynchronous operation
+    
+    // Calculate the new total duration including the new activity
+    const newTotalDuration=todaysTotalDuration+Number(activityDuration)
+    
+    const difference = activityGoal - newTotalDuration;
     let message;
     if (difference > 0){
       message = "Activity added! Keep moving! Just "+difference+" minutes to reach your daily goal!";
     } else if (difference===0){
       message = "Activity added! Congratulations! You reached your daily goal!";
     } else {
-      message = "Activity added! Bravo! You are on fire today!";
+      message = "Activity added! Bravo! You were very active today!";
     }
     toast(message,{
-      autoClose: 5000,
+      autoClose: 4000,
       className: 'Message-Size-class',
       position: toast.POSITION.TOP_CENTER
     });
