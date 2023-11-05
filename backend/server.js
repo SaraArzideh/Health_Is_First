@@ -22,7 +22,12 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(bodyParser.json());
-app.use('/',userRoute);
+
+// Routes
+app.use('/', userRoute);
+app.use('/diet',isUserLogged, dietRoute);
+app.use('/weight',isUserLogged, weightRoute);
+app.use('/activity',isUserLogged, activityRoute);
 
 // MongoDB Connection Setup
 const mongo_url= process.env.MONGODB_URL;
@@ -167,12 +172,6 @@ app.post("/logout",function(req,res) {
 	})
 })
 
-
-// Routes
-app.use('/api/diet',isUserLogged, dietRoute);
-app.use('/api/weight',isUserLogged, weightRoute);
-app.use('/api/activity',isUserLogged, activityRoute);
-app.use('/api/user', userRoute);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
