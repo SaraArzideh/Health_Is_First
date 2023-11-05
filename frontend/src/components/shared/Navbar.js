@@ -1,5 +1,7 @@
 import React from 'react';
-import {Link, useLocation} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../../actions/authActions';
+import {Link, useLocation} from 'react-router-dom';
 
 const logo=require('./logo.png');
 
@@ -12,7 +14,13 @@ function Navbar() {
   const isNutritionTracker = location.pathname==="/diet";
   const isSignUpPage = location.pathname==="/signup";
   const isLoginPage = location.pathname==="/login";
-
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state=>state.auth.isLoggedIn);
+  const username = useSelector(state => state.auth.user?.username);
+  const handleLogout= ()=>{
+    dispatch (logoutUser());
+  };
+  
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="logo-container">
@@ -25,9 +33,18 @@ function Navbar() {
             { !isActivityTracker && <Link to="/activity">Activity</Link> }
             { !isBodyMetrics && <Link to="/weight">Weight</Link> }
             { !isNutritionTracker && <Link to="/diet">Diet</Link> }
-            { !isSignUpPage && <Link to="/signup">Sign Up</Link> }
-            { !isLoginPage && <Link to="/login">Login</Link> }
         </div>
+        {isLoggedIn?(
+            <>
+              <span className="navbar-text welcome-message">Welcome, {username}!</span>
+              <button onClick={handleLogout}>Logout</button>
+            </>
+          ):(
+            <>
+            { !isSignUpPage && <Link to="/signup" className="navbar-links">Sign Up</Link> }
+            { !isLoginPage && <Link className="navbar-links" to="/login">Login</Link> }
+            </>
+          )}
     </nav>
 
   );

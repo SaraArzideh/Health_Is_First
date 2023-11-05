@@ -17,9 +17,12 @@ let app = express();
 let PORT = process.env.PORT || 5000;
 
 // Middleware Setup
-app.use(cors());
+app.use(cors({
+	origin: 'http://localhost:3000'    // Allow this origin to access the API
+}));
 app.use(express.json());
 app.use(bodyParser.json());
+app.use('/',userRoute);
 
 // MongoDB Connection Setup
 const mongo_url= process.env.MONGODB_URL;

@@ -29,4 +29,4 @@ export const fetchDietData = () => {
     .then(handleResponse);
 };
 
-// Similarly, you can add more methods for POST, PUT, DELETE operations as needed.
+// Can add more methods for POST, PUT, DELETE operations as needed.

@@ -21,6 +21,7 @@ router.post('/register', async (req, res) => {
 
 // Authenticate a user or User Login
 router.post('/login', async (req, res) => {
+    console.log(" Login route hit with body:", req.body);  //to make sure that server's route is being hit!
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({ message: "Bad Request: Email and password required." });
     }

@@ -17,7 +17,7 @@ const initialState = {
        case SIGNUP_SUCCESS:
             return {
              ...state,
-             user: action.payload,
+             user: action.payload.user,
              isLoggedIn: true,
              error: null
             };

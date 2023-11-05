@@ -1,6 +1,6 @@
 import logo from'./components/shared/logo.png';
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer } from 'react-toastify';
 
@@ -24,7 +24,7 @@ function App() {
     <>
     <ToastContainer/>
       <DashboardProvider>
-        <Router>
+        <BrowserRouter>
           <div className="App">
             <Navbar />
             <Routes>
@@ -38,7 +38,7 @@ function App() {
             </Routes>
             <Footer/>
           </div>
-        </Router>
+        </BrowserRouter>
       </DashboardProvider>
     </>
   );

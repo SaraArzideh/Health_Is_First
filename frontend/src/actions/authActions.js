@@ -28,8 +28,8 @@ export const setUserWeightGoal = (goal) => {
 export const loginUser = (credentials) => {
    return async (dispatch) => {
       try {
-         // Asynchronous call to API for login, using fetch or axios
-         const response = await fetch('YOUR_LOGIN_API_ENDPOINT', {
+         // Asynchronous call to API for login, using fetch
+         const response = await fetch('http://localhost:5000/login', {
             method: 'POST',
             headers: {
                'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ export const signupUser = (userInfo) => {
    return async (dispatch) => {
       try {
          // API call for signup
-         const response = await fetch('YOUR_SIGNUP_API_ENDPOINT', {
+         const response = await fetch('http://localhost:5000/register', {
             method: 'POST',
             headers: {
                'Content-Type': 'application/json'

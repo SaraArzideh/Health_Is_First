@@ -135,14 +135,23 @@ p {
   padding: 10px 20px;
 }
 
-.navbar-links {
- margin-right:30px
+.navbar-links, .navbar-text {
+ margin-right:10px
 }
 
 .navbar-links a {
-  margin-right: 20px;
+  margin-right: 10px;
   font-size:20px ; 
   color:black; 
+}
+
+.logout-button{
+  margin-right:10px;
+}
+
+.welcome-message{
+  margin-right:10px;
+  color: black;
 }
 
 .button-group{

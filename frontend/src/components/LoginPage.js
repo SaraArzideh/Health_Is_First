@@ -1,4 +1,6 @@
 import {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import { loginUser, signupUser } from '../actions/authActions';
 import * as d3 from 'd3';
 
 const LoginPage = (props) => {
@@ -13,7 +15,8 @@ const LoginPage = (props) => {
         targetActivity: "",
         targetCalories: ""
 	})
-	
+	const dispatch= useDispatch();   //use this hook to dispatch action
+
 	const onChange = (event) => {
 		setState((state) => {
 			return {
@@ -25,6 +28,8 @@ const LoginPage = (props) => {
 	
 	const onSubmit = (event) => {
 		event.preventDefault();
+		console.log ("submit button clicked with values",state); // Debug log
+
 		if(state.username.length < 4 || state.password.length < 8) {
 			props.setError("Username must be atleast 4 and password 8 characters long");
 			return;
@@ -32,10 +37,15 @@ const LoginPage = (props) => {
 		let user = {
 			...state
 		}
+
+		console.log("Attempting to register/login with user: ", user)// Debug log
+
 		if(event.target.name === "register") {
-			props.register(user);
+			console.log("Registering user"); // Debug log
+			dispatch (signupUser(user));
 		} else {
-			props.login(user);
+			console.log("Logging in user"); // Debug log
+			dispatch(loginUser(user));
 		}
 	}
 	
