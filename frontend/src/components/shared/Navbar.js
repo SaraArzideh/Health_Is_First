@@ -14,12 +14,31 @@ function Navbar() {
   const isNutritionTracker = location.pathname==="/diet";
   const isSignUpPage = location.pathname==="/signup";
   const isLoginPage = location.pathname==="/login";
+
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state=>state.auth.isLoggedIn);
   const username = useSelector(state => state.auth.user?.username);
+  console.log('User from state:', username);
+
   const handleLogout= ()=>{
     dispatch (logoutUser());
   };
+  let navigationLinks;
+  if (isLoggedIn){
+    navigationLinks=(
+      <>
+        <span className="navbar-text welcome-message">Welcome, {username ||'Guest'}!</span>
+        <button onClick={handleLogout}>Logout</button>
+      </>
+    );
+  } else {
+    navigationLinks=(
+      <>
+        { !isSignUpPage && <Link to="/signup" className="navbar-links">Sign Up</Link> }
+        { !isLoginPage && <Link className="navbar-links" to="/login">Login</Link> }
+      </>
+    );
+  }
   
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,25 +47,16 @@ function Navbar() {
             <h2 className="navbar-brand" style={{marginLeft:10}}>Health Is First</h2>
         </div>
         <div className="navbar-links">
-            { !isHomePage && <Link to="/">Home</Link> }
-            { !isDashboard && <Link to="/dashboard">Dashboard</Link> }
-            { !isActivityTracker && <Link to="/activity">Activity</Link> }
-            { !isBodyMetrics && <Link to="/weight">Weight</Link> }
-            { !isNutritionTracker && <Link to="/diet">Diet</Link> }
+            { !isHomePage && <Link to="/" className={`nav-item'${!location.pathname !== '/' ?'active': ''}`}>Home</Link> }
+            { !isDashboard && <Link to="/dashboard" className={`nav-item'${!location.pathname === '/dashboard' ?'active': ''}`}>Dashboard</Link> }
+            { !isActivityTracker && <Link to="/activity" className={`nav-item'${!location.pathname === '/activity' ?'active': ''}`}>Activity</Link> }
+            { !isBodyMetrics && <Link to="/weight" className={`nav-item'${!location.pathname === '/weight' ?'active': ''}`}>Weight</Link> }
+            { !isNutritionTracker && <Link to="/diet" className={`nav-item'${!location.pathname === '/diet' ?'active': ''}`}>Diet</Link> }
         </div>
-        {isLoggedIn?(
-            <>
-              <span className="navbar-text welcome-message">Welcome, {username}!</span>
-              <button onClick={handleLogout}>Logout</button>
-            </>
-          ):(
-            <>
-            { !isSignUpPage && <Link to="/signup" className="navbar-links">Sign Up</Link> }
-            { !isLoginPage && <Link className="navbar-links" to="/login">Login</Link> }
-            </>
-          )}
+        <div className="ml-auto">
+          {navigationLinks}
+        </div>
     </nav>
-
   );
 }
 

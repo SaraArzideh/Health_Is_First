@@ -135,11 +135,7 @@ p {
   padding: 10px 20px;
 }
 
-.navbar-links, .navbar-text {
- margin-right:10px
-}
-
-.navbar-links a {
+.navbar-links a, .navbar-links, .navbar-tex {
   margin-right: 10px;
   font-size:20px ; 
   color:black; 

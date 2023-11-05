@@ -12,7 +12,10 @@ router.post('/register', async (req, res) => {
 
     try {
         await newUser.save();
-        res.status(201).send(newUser);
+        res.status(201).send({
+            _id:newUser._id,
+            username: newUser.username,
+        });
     } catch (error) {
         console.log("Failed to register new user. Reason:", error);
         res.status(500).json({ message: "Internal Server Error" });
@@ -32,7 +35,10 @@ router.post('/login', async (req, res) => {
             return res.status(404).json({ message: "Invalid email or password" });
         }
         // Ideally, generate a token or set session here (not shown in this basic example)
-        res.status(200).send(user);
+        res.status(200).send({          
+            _id:newUser._id,
+            username: newUser.username,
+        });
     } catch (error) {
         console.log("Failed to log in. Reason:", error);
         res.status(500).json({ message: "Internal Server Error" });

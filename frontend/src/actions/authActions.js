@@ -36,13 +36,12 @@ export const loginUser = (credentials) => {
             },
             body: JSON.stringify(credentials)
          });
-
-         const userData = await response.json();
+         const data = await response.json();
 
          if (response.ok) {
-            dispatch({ type: LOGIN_SUCCESS, payload: userData });
+            dispatch({ type: LOGIN_SUCCESS, payload: data });
          } else {
-            dispatch({ type: AUTH_ERROR, payload: userData.message });
+            dispatch({ type: AUTH_ERROR, payload: data.message });
          }
       } catch (error) {
          dispatch({ type: AUTH_ERROR, payload: 'Login failed!' });

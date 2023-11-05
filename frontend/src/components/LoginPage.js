@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import { loginUser, signupUser } from '../actions/authActions';
+import { useNavigate } from 'react-router-dom';
 import * as d3 from 'd3';
 
 const LoginPage = (props) => {
@@ -16,6 +17,7 @@ const LoginPage = (props) => {
         targetCalories: ""
 	})
 	const dispatch= useDispatch();   //use this hook to dispatch action
+	const navigate= useNavigate();
 
 	const onChange = (event) => {
 		setState((state) => {
@@ -43,9 +45,11 @@ const LoginPage = (props) => {
 		if(event.target.name === "register") {
 			console.log("Registering user"); // Debug log
 			dispatch (signupUser(user));
+			navigate('/'); // Redirect to home on successful registration
 		} else {
 			console.log("Logging in user"); // Debug log
 			dispatch(loginUser(user));
+			navigate('/'); // Redirect to home on successful login
 		}
 	}
 	
