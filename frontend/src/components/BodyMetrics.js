@@ -4,12 +4,15 @@ import{useSelector, useDispatch} from 'react-redux';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {setUserWeightGoal} from '../actions/authActions'
+import WeightHistoryGraph from './WeightHistoryGraph';
 import * as d3 from 'd3';
 
 function BodyMetrics() {
   const dispatch = useDispatch();
   // Pull user data from Redux store
   const userData=useSelector(state=> state.auth.user)
+  const [showGraph, setShowGraph]=useState(false);
+
   const [currentWeight, setCurrentWeight] = useState(userData.currentWeight);
   const [isEditingWeight, setIsEditingWeight]= useState(false);
 
@@ -24,7 +27,6 @@ function BodyMetrics() {
     return "You are in the obese range";
   }
   const BMICategory = getBMICategory(BMI);
-
 
   const handleEditWeightToggle = () => {
     setIsEditingWeight(!isEditingWeight);
@@ -42,13 +44,13 @@ function BodyMetrics() {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 8000,
       });
-  };
+    };
   setIsEditingWeight(false);
-};
-  const toggleWeightHistory = () => {
-      // Logic to toggle the visualization component or redirect to another page
   };
-
+  const toggleWeightHistory = () => {
+    setShowGraph(!showGraph);
+  };
+  
   return (
     <div className="weight-page">
       <h1>Body Metrics Tracking</h1>
@@ -74,8 +76,8 @@ function BodyMetrics() {
           )}
         </div>
         <button onClick={toggleWeightHistory}>View Your Body Metric Progress!</button>
+        {showGraph && <WeightHistoryGraph />}
 
-        {/* Visualization component for weight changes comes here */}
       <button><a href="/">Back to Home Page</a></button>
     </div>
   );
