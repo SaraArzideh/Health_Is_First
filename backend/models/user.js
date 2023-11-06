@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     email: String,
     height: Number,
     weight: Number,
-    dateOfBirth: Date,
+    age: Number,
     goals: {
         activity: Number,
         diet: Number

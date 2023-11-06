@@ -22,12 +22,7 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(bodyParser.json());
-
-// Routes
 app.use('/', userRoute);
-app.use('/diet',isUserLogged, dietRoute);
-app.use('/weight',isUserLogged, weightRoute);
-app.use('/activity',isUserLogged, activityRoute);
 
 // MongoDB Connection Setup
 const mongo_url= process.env.MONGODB_URL;
@@ -171,6 +166,11 @@ app.post("/logout",function(req,res) {
 		return res.status(500).json({"Message":"Internal Server Error"});
 	})
 })
+
+// Routes
+app.use('/diet',isUserLogged, dietRoute);
+app.use('/weight',isUserLogged, weightRoute);
+app.use('/activity',isUserLogged, activityRoute);
 
 
 app.listen(PORT, () => {

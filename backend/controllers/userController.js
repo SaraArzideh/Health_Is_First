@@ -17,14 +17,14 @@ const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new User({
-        username,
-        email,
+        username:req.body.username,
+        email:req.body.email,
         password: hashedPassword
     });
 
     try {
-        const user = await newUser.save();
-        res.status(201).json(user);
+        const savedUser = await newUser.save();
+        res.status(201).json(savedUser);
     } catch (err) {
         res.status(400).json({ message: err.message });
     }

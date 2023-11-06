@@ -28,5 +28,3 @@ export const fetchDietData = () => {
   return fetch(`${BASE_URL}/diet`)
     .then(handleResponse);
 };
-
-// Can add more methods for POST, PUT, DELETE operations as needed.
