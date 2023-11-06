@@ -19,7 +19,11 @@ const registerUser = async (req, res) => {
     const newUser = new User({
         username:req.body.username,
         email:req.body.email,
-        password: hashedPassword
+        password: hashedPassword,
+        activityGoal:req.body.activityGoal,
+        dietGoal:req.body.dietGoal,
+        currentWeight:req.body.currentWeight,
+        height:req.body.height
     });
 
     try {

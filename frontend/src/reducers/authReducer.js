@@ -8,7 +8,8 @@ const initialState = {
     error: null,
     activityGoal: null,
     dietGoal: 0,
-    weightGoal:0
+    currentWeight:0,
+    height:0
  };
  
  const authReducer = (state = initialState, action) => {

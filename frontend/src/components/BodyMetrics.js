@@ -8,9 +8,14 @@ import * as d3 from 'd3';
 
 function BodyMetrics() {
 
-  const [weightGoal, setWeightGoal] = useState(null);
-  const [currentWeight, setCurrentWeight] = useState(null);
+  // Pull user data from Redux store
+  const userData=useSelector(state=> state.auth.user)
+
   const dispatch = useDispatch();
+  const [weightGoal, setWeightGoal] = useState(userData.weightGoal);
+  const [currentWeight, setCurrentWeight] = useState(userData.currentWeight);
+  const BMI = userData.currentWeight / ((userData.height / 100) ** 2);
+
 
   // Add Current Weight
   const handleAddWeight = () => {
@@ -36,8 +41,8 @@ function BodyMetrics() {
       dispatch(setUserWeightGoal(weightGoal));
   };
 
-  const toggleEditGoal = () => {
-      setWeightGoal(null); // To show the input field again
+  const toggleEditWeight = () => {
+      setCurrentWeight(null); // To show the input field again
   };
 
   const toggleWeightHistory = () => {
@@ -65,8 +70,9 @@ function BodyMetrics() {
             ) : (
               // If there's a weightGoal, display the set goal and the EDIT button
               <>
-                <p>Your Current Target Weight is {weightGoal} Kg.</p>
-                <button onClick={toggleEditGoal}>Edit</button>
+                <p>Your Current Weight is {currentWeight} Kg.</p>
+                <button onClick={toggleEditWeight}>Edit</button>
+                <p>Your Current Body Mass Index is {BMI}.</p>
               </>
             )
           }

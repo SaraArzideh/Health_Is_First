@@ -8,12 +8,10 @@ const userSchema = new mongoose.Schema({
     password: String,
     email: String,
     height: Number,
-    weight: Number,
+    currentWeight: Number,
     age: Number,
-    goals: {
-        activity: Number,
-        diet: Number
-    }
+    activityGoal: Number,
+    dietGoal: Number
 });
 
 module.exports = mongoose.model('User',userSchema);

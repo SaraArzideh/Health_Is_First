@@ -13,8 +13,8 @@ const LoginPage = (props) => {
 		age:"",
 		height: "",
         currentWeight: "",
-        targetActivity: "",
-        targetCalories: ""
+        activityGoal: "",
+        dietGoal: ""
 	})
 	const dispatch= useDispatch();   //use this hook to dispatch action
 	const navigate= useNavigate();
@@ -121,20 +121,20 @@ const LoginPage = (props) => {
 						<div className="form-group">
 							<label htmlFor="targetActivity" className="form-label">Target Activity (minutes/day)</label>
 							<input type="text"
-								id="targetActivity"
-								name="targetActivity"
+								id="activityGoal"
+								name="activityGoal"
 								className="form-control"
 								onChange={onChange}
-								value={state.targetActivity} />
+								value={state.activityGoal} />
 						</div>
 						<div className="form-group">
 							<label htmlFor="targetCalories" className="form-label">Target Consuming Calories (Calories/day)</label>
 							<input type="text"
-								id="targetCalories"
-								name="targetCalories"
+								id="dietGoal"
+								name="dietGoal"
 								className="form-control"
 								onChange={onChange}
-								value={state.targetCalories} />
+								value={state.dietGoal} />
 						</div>
                     </div>
                 )}

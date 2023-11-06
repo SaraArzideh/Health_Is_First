@@ -3,20 +3,24 @@ import { useContext } from 'react';
 import { useDashboard } from '../context/DashboardContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserActivityGoal } from '../actions/authActions';
+import {currentWeight} from './BodyMetrics';
 import * as d3 from 'd3';
 
 // Simulated User Context to get user's progress data
 const UserContext= React.createContext();
 
 function Dashboard() {
-  //Fetching user data from context
-  const userProgress=useContext(UserContext)
+
+  //pull user data from redux state
+  const userData= useSelector(state=> state.auth.user);
+  const BMI = userData.currentWeight / ((userData.height / 100) ** 2);
   const { toggleDashboard } = useDashboard();
 
   const dispatch = useDispatch();
 
   // Get the goal from the user state inside authReducer
   const activityGoal = useSelector(state => state.auth.user?.activityGoal||0); 
+  const dietGoal = useSelector (state=> state.auth.user?.dietGoal||0);
   
   // Function to handle goal setting from the dashboard
   const handleDashboardSetGoal = (goal) => {
@@ -31,17 +35,9 @@ function Dashboard() {
         <div className="progress-sections">
         {/* Visualization for Activity Progress */}
         <section className="activity-progress">
-          <div>
-              <h2>Set Your Daily Activity Goal</h2>
-              <input 
-                  type="number"
-                  value={activityGoal}
-                  onChange={(e) => handleDashboardSetGoal(e.target.value)}
-                  placeholder="Goal (in minutes)"
-              />
-          </div>          
+       
           <h2>Your Activity Progress</h2>
-
+          <p>Your Current Daily Activity Goal is {activityGoal} minutes per day.</p>
 
           {/* Daily Activity Progress Visualization*/}
           <div className="daily activity">Daily:{/*D3.js, placeholder */}</div>
@@ -56,6 +52,8 @@ function Dashboard() {
         {/* Visualization for Diet Progress */}
         <section className="diet-progress">
           <h2>Your Diet Progress</h2>
+          <p>Your Current Daily Diet Goal is to Consume {dietGoal} Calories per day.</p>
+
 
           {/* Daily Diet Progress Visualization*/}
           <div className="daily diet">Daily:{/*D3.js, placeholder */}</div>
@@ -70,6 +68,8 @@ function Dashboard() {
         {/* Visualization for Body Metrics Progress */}
         <section className="body-metrics-progress">
           <h2>Your Body Metrics</h2>
+          <p>Your Current Body Mass Index is {BMI}.</p>
+
 
           {/* Daily Body Metrics Visualization*/}
           <div className="daily metrics">Daily:{/*D3.js, placeholder */}</div>

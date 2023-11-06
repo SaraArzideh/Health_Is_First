@@ -12,7 +12,7 @@ function ActivityTracker() {
   const dispatch = useDispatch();
   const activities = useSelector(state => state.activities.activities);
   const userActivityGoal = useSelector(state => state.auth.user?.activityGoal || 0);
-  
+
   // Create a state to determine if the goal is currently being edited:
   const [isEditingGoal, setIsEditingGoal] = useState(false);
   const [showActivityHistory, setShowActivityHistory] = useState(false);
