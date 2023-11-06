@@ -100,7 +100,7 @@ const LoginPage = (props) => {
 									value={state.age} />
 							</div>
 							<div className="form-group col-md-4">
-								<label htmlFor="height" className="form-label">Height (meter)</label>
+								<label htmlFor="height" className="form-label">Height (Centimeters)</label>
 								<input type="text"
 									id="height"
 									name="height"

@@ -13,7 +13,7 @@ function Dashboard() {
 
   //pull user data from redux state
   const userData= useSelector(state=> state.auth.user);
-  const BMI = userData.currentWeight / ((userData.height / 100) ** 2);
+  const BMI = (userData.currentWeight / ((userData.height / 100) ** 2)).toFixed(1);
   const { toggleDashboard } = useDashboard();
 
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ function Dashboard() {
         <div className="progress-sections">
         {/* Visualization for Activity Progress */}
         <section className="activity-progress">
-       
+        
           <h2>Your Activity Progress</h2>
           <p>Your Current Daily Activity Goal is {activityGoal} minutes per day.</p>
 

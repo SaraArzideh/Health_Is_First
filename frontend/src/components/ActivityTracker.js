@@ -11,10 +11,12 @@ import * as d3 from 'd3';
 function ActivityTracker() {
   const dispatch = useDispatch();
   const activities = useSelector(state => state.activities.activities);
-  const userActivityGoal = useSelector(state => state.auth.user?.activityGoal || 0);
 
   // Create a state to determine if the goal is currently being edited:
   const [isEditingGoal, setIsEditingGoal] = useState(false);
+  
+  const userActivityGoal = useSelector(state => state.auth.user?.activityGoal || 0);
+
   const [showActivityHistory, setShowActivityHistory] = useState(false);
 
   // Add a local state to determine if the goal has been set at least once:
