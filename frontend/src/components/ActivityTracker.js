@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import{useSelector, useDispatch} from 'react-redux';
-import { ADD_ACTIVITY, SET_ACTIVITY_GOAL } from '../actions/activityActions';
+import { ADD_ACTIVITY, SET_USER_ACTIVITY_GOAL } from '../actions/activityActions';
 import { setUserActivityGoal } from '../actions/authActions';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -69,7 +69,7 @@ function ActivityTracker() {
 
   // Set an Activity Goal
   const handleSetGoal = () => {
-    dispatch({ type: SET_ACTIVITY_GOAL, payload:activityGoal });
+    dispatch({ type: SET_USER_ACTIVITY_GOAL, payload:activityGoal });
     dispatch(setUserActivityGoal(activityGoal));
     setIsEditingGoal(false);  // Set to false after goal is set
   };

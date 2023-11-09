@@ -4,42 +4,50 @@ export const LOGOUT = 'LOGOUT';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const SET_USER_ACTIVITY_GOAL = 'SET_USER_ACTIVITY_GOAL';
-export const SET_USER_WEIGHT_GOAL = 'SET_USER_WEIGHT_GOAL';
-
+export const SET_USER_DIET_GOAL = 'SET_USER_DIET_GOAL';
+export const SET_USER_CURRENT_WEIGHT ='SET_USER_CURRENT_WEIGHT';
+export const SET_USER= 'SET_USER';
 // Action Creators
 
 //User Activity Goal
-export const setUserActivityGoal = (goal) => {
+export const setUserActivityGoal = (activityGoal) => {
    return {
        type: SET_USER_ACTIVITY_GOAL,
-       payload: goal
+       payload: activityGoal
    };
 };
 
-// User Weight Goal
-export const setUserWeightGoal = (goal) => {
+// User Current Weight
+export const setUserCurrentWeight = (currentWeight) => {
    return {
-       type: SET_USER_WEIGHT_GOAL,
-       payload: goal
+       type: SET_USER_CURRENT_WEIGHT,
+       payload: currentWeight
+   };
+};
+
+// User Diet Goal
+export const setUserDietGoal = (dietGoal) => {
+   return {
+       type: SET_USER_DIET_GOAL,
+       payload: dietGoal
    };
 };
 
 // Login User
-export const loginUser = (credentials) => {
-   return async (dispatch) => {
+export const loginUser = (credentials) => async (dispatch) => {
       try {
          // Asynchronous call to API for login, using fetch
          const response = await fetch('http://localhost:5000/login', {
             method: 'POST',
-            headers: {
-               'Content-Type': 'application/json'
-            },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(credentials)
          });
          const data = await response.json();
 
          if (response.ok) {
-            dispatch({ type: LOGIN_SUCCESS, payload: data });
+            localStorage.setItem('token', data.token); // Store token
+            dispatch({ type: LOGIN_SUCCESS, payload: data.user });
+            dispatch({ type: SET_USER, payload: data.user });
          } else {
             dispatch({ type: AUTH_ERROR, payload: data.message });
          }
@@ -47,7 +55,6 @@ export const loginUser = (credentials) => {
          dispatch({ type: AUTH_ERROR, payload: 'Login failed!' });
       }
    };
-};
 
 // Signup User
 export const signupUser = (userInfo) => {
@@ -56,16 +63,15 @@ export const signupUser = (userInfo) => {
          // API call for signup
          const response = await fetch('http://localhost:5000/register', {
             method: 'POST',
-            headers: {
-               'Content-Type': 'application/json'
-            },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(userInfo)
          });
 
          const data = await response.json();
 
          if (response.ok) {
-            dispatch({ type: SIGNUP_SUCCESS, payload: data });
+            localStorage.setItem('user', JSON.stringify(data.user));
+            dispatch({ type: SIGNUP_SUCCESS, payload: data.user });
          } else {
             dispatch({ type: AUTH_ERROR, payload: data.message });
          }
@@ -77,8 +83,17 @@ export const signupUser = (userInfo) => {
 
 // Logout User
 export const logoutUser = () => {
+   localStorage.removeItem('token'); // Remove token from storage
    return (dispatch) => {
-      // Clear user data or perform other cleanup tasks
       dispatch({ type: LOGOUT });
+   };
+};
+
+//load the user data from local storage 
+export const loadUser=()=>{
+   const userData=localStorage.getItem('user');
+   return {
+      type:SET_USER_ACTIVITY_GOAL,
+      payload: JSON.parse(userData)
    };
 };

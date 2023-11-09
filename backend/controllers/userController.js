@@ -3,6 +3,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const config = require('../config');
 
 // User Registration
 const registerUser = async (req, res) => {
@@ -23,12 +24,14 @@ const registerUser = async (req, res) => {
         activityGoal:req.body.activityGoal,
         dietGoal:req.body.dietGoal,
         currentWeight:req.body.currentWeight,
-        height:req.body.height
+        height:req.body.height,
+        age: req.body.age
     });
 
     try {
         const savedUser = await newUser.save();
-        res.status(201).json(savedUser);
+        //Respond with the new user data but exclude the password
+        res.status(201).json({ user: savedUser.toObject({ getters: true, virtuals: false }) });
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
@@ -47,8 +50,18 @@ const loginUser = async (req, res) => {
     if (!validPass) return res.status(400).json({ message: 'Invalid credentials' });
 
     // Create and assign a token
-    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-    res.header('auth-token', token).json({ token });
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.header('auth-token', token).json({ token, user: { 
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        height: user.height,
+        currentWeight: user.currentWeight,
+        age: user.age,
+        activityGoal: user.activityGoal,
+        dietGoal: user.dietGoal,
+        bmi: user.bmi
+    }  });
 };
 
 // Get user profile

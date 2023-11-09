@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import { useDashboard } from '../context/DashboardContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserActivityGoal } from '../actions/authActions';
-import {currentWeight} from './BodyMetrics';
 import * as d3 from 'd3';
 
 // Simulated User Context to get user's progress data
@@ -14,7 +13,7 @@ function Dashboard() {
   //pull user data from redux state
   const userData= useSelector(state=> state.auth.user);
   const BMI = (userData.currentWeight / ((userData.height / 100) ** 2)).toFixed(1);
-  const { toggleDashboard } = useDashboard();
+  const { isDashboardOpen, toggleDashboard } = useDashboard();
 
   const dispatch = useDispatch();
 
@@ -81,7 +80,7 @@ function Dashboard() {
           <div className="yearly metrics">Yearly:{/*D3.js, placeholder */}</div>     
         </section>
         </div>
-        <button><a href="/">Close The Dashboard</a></button>
+        <button onClick={toggleDashboard}>Close The Dashboard</button>
       </div>
     );
 }

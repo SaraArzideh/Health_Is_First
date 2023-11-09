@@ -16,6 +16,7 @@ function HomePage() {
     //State for goals
     const [activityGoal, setActivityGoal] = useState('');
     const [dietGoal, setDietGoal] = useState('');
+
     const { isDashboardOpen, toggleDashboard } = useDashboard();
 
     //State to show or hide the dashboard
@@ -46,10 +47,14 @@ function HomePage() {
             <button onClick={() => {/* submit goals to backend */ }}>Submit Goals</button>
           </section>
         )}
-        { isLoggedIn ?
-            <button className='btn' onClick={toggleDashboard}>Open The Dashboard</button>:
+        { isLoggedIn ?(
+            <button className='btn' onClick={toggleDashboard}>
+              {isDashboardOpen ? 'Close The Dashboard' : 'Open The Dashboard'}
+            </button>
+        ):(
             <button className='btn' onClick={()=>window.location.href="/signup" }>Start</button>
-        }
+        )}
+        {isDashboardOpen && <Dashboard />}  
     </div>  
   );
 }

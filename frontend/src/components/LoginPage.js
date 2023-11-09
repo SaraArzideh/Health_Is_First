@@ -16,7 +16,7 @@ const LoginPage = (props) => {
         activityGoal: "",
         dietGoal: ""
 	})
-	const dispatch= useDispatch();   //use this hook to dispatch action
+	const dispatch= useDispatch();
 	const navigate= useNavigate();
 
 	const onChange = (event) => {

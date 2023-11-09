@@ -17,8 +17,7 @@ function Navbar() {
 
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state=>state.auth.isLoggedIn);
-  const username = useSelector(state => state.auth.user?.username);
-  console.log('User from state:', username);
+  const user = useSelector((state) => state.auth.user);
 
   const handleLogout= ()=>{
     dispatch (logoutUser());
@@ -27,7 +26,7 @@ function Navbar() {
   if (isLoggedIn){
     navigationLinks=(
       <>
-        <span className="navbar-text welcome-message">Welcome, {username ||'Guest'}!</span>
+        <span className="navbar-text welcome-message">Welcome, {user.username ||'Guest'}!</span>
         <button onClick={handleLogout}>Logout</button>
       </>
     );

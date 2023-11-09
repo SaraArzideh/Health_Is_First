@@ -3,7 +3,7 @@ import { useState } from 'react';
 import{useSelector, useDispatch} from 'react-redux';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {setUserWeightGoal} from '../actions/authActions'
+import {setUserCurrentWeight} from '../actions/authActions'
 import WeightHistoryGraph from './WeightHistoryGraph';
 import * as d3 from 'd3';
 
@@ -38,7 +38,7 @@ function BodyMetrics() {
   };
   const handleWeightSubmit=()=>{
     if (isEditingWeight){
-      dispatch(setUserWeightGoal(currentWeight));
+      dispatch(setUserCurrentWeight(currentWeight));
       //Show the BMI category toast message
       toast (`Your new BMI is ${BMI}. ${BMICategory}`,{
         position: toast.POSITION.TOP_CENTER,

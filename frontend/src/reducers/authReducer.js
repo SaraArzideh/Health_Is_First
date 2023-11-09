@@ -1,26 +1,24 @@
-import { SET_ACTIVITY_GOAL } from '../actions/activityActions';
-import {LOGIN_SUCCESS, LOGOUT, SIGNUP_SUCCESS, AUTH_ERROR} from '../actions/authActions';
-import {SET_USER_ACTIVITY_GOAL} from '../actions/authActions';
+import {
+    LOGIN_SUCCESS,
+    LOGOUT, SIGNUP_SUCCESS,
+    AUTH_ERROR,
+    SET_USER_ACTIVITY_GOAL,
+    SET_USER_DIET_GOAL,
+    SET_USER 
+} from '../actions/authActions';
 
 const initialState = {
     user: null,
     isLoggedIn: false,
     error: null,
     activityGoal: null,
-    dietGoal: 0,
-    currentWeight:0,
-    height:0
- };
+    dietGoal: null,
+    currentWeight:null,
+};
  
  const authReducer = (state = initialState, action) => {
     switch(action.type) {
        case LOGIN_SUCCESS:
-        return {
-            ...state,
-            user: action.payload,
-            isLoggedIn: true,
-            error: null
-           };
        case SIGNUP_SUCCESS:
             return {
              ...state,
@@ -40,14 +38,30 @@ const initialState = {
                 ...state,
                 error: action.payload,               
             }
-        case SET_ACTIVITY_GOAL:
+        case SET_USER_ACTIVITY_GOAL:
             return{
                 ...state,
                 user: {
                     ...state.user,
                     activityGoal: action.payload
                 }
-            };               
+            }; 
+
+        case SET_USER_DIET_GOAL:
+            return{
+                ...state,
+                user: {
+                    ...state.user,
+                    dietGoal: action.payload
+                }
+            }; 
+        case SET_USER:
+            return{
+                ...state,
+                user: action.payload,
+                isLoggedIn: true,
+                error:null, 
+            }          
         default:
             return state;
     }

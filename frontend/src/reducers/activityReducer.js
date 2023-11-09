@@ -1,4 +1,4 @@
-import { ADD_ACTIVITY, UPDATE_ACTIVITY, SET_ACTIVITY_GOAL, FETCH_ACTIVITIES } from '../actions/activityActions';
+import { ADD_ACTIVITY, SET_USER_ACTIVITY_GOAL, FETCH_ACTIVITIES, EDIT_ACTIVITY } from '../actions/activityActions';
 
 const initialState={
     activities:[],   //{ id:uniqueId, type: string, duration: number, date: Date },
@@ -13,7 +13,7 @@ const activityReducer = (state = initialState, action) => {
                 ...state,
                 activities: [...state.activities, action.payload]
             };
-        case UPDATE_ACTIVITY:
+        case EDIT_ACTIVITY:
             // Find the activity to update using its id, and replace it with the updated version
             const updatedActivities = state.activities.map(activity => 
                 activity.id === action.payload.id ? action.payload : activity
@@ -22,7 +22,7 @@ const activityReducer = (state = initialState, action) => {
                 ...state,
                 activities: updatedActivities
             };
-        case SET_ACTIVITY_GOAL:
+        case SET_USER_ACTIVITY_GOAL:
             // Update the activity goal in the state
             return {
                 ...state,

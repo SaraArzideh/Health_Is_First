@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -43,11 +44,13 @@ mongoose.connect(mongoURI, {
 //LOGIN DATABASE
 const time_to_live_diff = 3600000;
 
+/*
 //LOGIN MIDDLEWARES
 const createToken = () => {
 	let token = crypto.randomBytes(64);
 	return token.toString("hex");
 }
+*/
 
 const isUserLogged = (req,res,next) => {
 	if(!req.headers.token) {
@@ -135,7 +138,7 @@ app.post("/login",function(req,res) {
 			if(!success) {
 				return res.status(401).json({"Message":"Unauthorized"});
 			}
-			let token = createToken();
+			//let token = createToken();
 			let now = Date.now();
 			let session = new Session({
 				"token":token,
