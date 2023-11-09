@@ -3,6 +3,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer } from 'react-toastify';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+//import {setUser} from './actions/authActions';
 
 //context provider
 import { DashboardProvider } from './context/DashboardContext';
@@ -20,6 +23,16 @@ import LoginPage from './components/LoginPage';
 import './App.css';
 
 function App() {
+
+/*  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(setUser({ token }));
+    }
+  }, [dispatch]);
+*/
   return (
     <>
     <ToastContainer/>

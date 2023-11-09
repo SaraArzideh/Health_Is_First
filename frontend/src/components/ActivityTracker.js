@@ -6,6 +6,7 @@ import { setUserActivityGoal } from '../actions/authActions';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import * as d3 from 'd3';
+import { Link } from 'react-router-dom';
 
 
 function ActivityTracker() {
@@ -155,7 +156,7 @@ function ActivityTracker() {
               </tbody>
              </table>
           )}
-          <button className="btn"><a href="/">Back to Home Page</a></button>
+          <button className="btn"><Link to="/">Back to Home Page</Link></button>
 
     </div>
   );

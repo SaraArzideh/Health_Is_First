@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {setUserCurrentWeight} from '../actions/authActions'
 import WeightHistoryGraph from './WeightHistoryGraph';
 import * as d3 from 'd3';
+import { Link } from 'react-router-dom';
 
 function BodyMetrics() {
   const dispatch = useDispatch();
@@ -78,7 +79,7 @@ function BodyMetrics() {
         <button onClick={toggleWeightHistory}>View Your Body Metric Progress!</button>
         {showGraph && <WeightHistoryGraph />}
 
-      <button><a href="/">Back to Home Page</a></button>
+        <button className="btn"><Link to="/">Back to Home Page</Link></button>
     </div>
   );
 }
