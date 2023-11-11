@@ -49,7 +49,7 @@ function Navbar() {
             { !isHomePage && <Link to="/" className={`nav-item'${!location.pathname !== '/' ?'active': ''}`}>Home</Link> }
             { !isDashboard && <Link to="/dashboard" className={`nav-item'${!location.pathname === '/dashboard' ?'active': ''}`}>Dashboard</Link> }
             { !isActivityTracker && <Link to="/activity" className={`nav-item'${!location.pathname === '/activity' ?'active': ''}`}>Activity</Link> }
-            { !isBodyMetrics && <Link to="/weight" className={`nav-item'${!location.pathname === '/weight' ?'active': ''}`}>Weight</Link> }
+            { !isBodyMetrics && <Link to="/weight" className={`nav-item'${!location.pathname === '/weight' ?'active': ''}`}>Body-Metrics</Link> }
             { !isNutritionTracker && <Link to="/diet" className={`nav-item'${!location.pathname === '/diet' ?'active': ''}`}>Diet</Link> }
         </div>
         <div className="ml-auto">

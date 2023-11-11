@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import {FETCH_WEIGHTS} from '../actions/dataActions';
+import * as d3 from 'd3';
 
 function WeightHistoryGraph() {
   const [weightData, setWeightData] = useState([]);

@@ -92,8 +92,7 @@ function ActivityTracker() {
       <div>
         <h1>Stay Active and Track Your Activities!</h1>
 
-        <div>
-          <h2>Set Daily Activity Goal</h2>
+        <div className="activity-tracker-message"> {/* Apply the new class here */}
           {
             isEditingGoal ? 
             (
@@ -111,7 +110,7 @@ function ActivityTracker() {
             (
               // If not editing, display the set goal and the EDIT button
               <>
-                <p>Your Current Daily Activity Goal is {activityGoal} minutes per day.</p>
+                <p>Hit Your {activityGoal}-minutes Daily Goal.</p>
                 <button onClick={toggleEditGoal}>Edit</button>
               </>
             )

@@ -14,11 +14,16 @@ function BodyMetrics() {
   const userData=useSelector(state=> state.auth.user)
   const [showGraph, setShowGraph]=useState(false);
 
+  const [editableWeight, setEditableWeight] = useState(userData.currentWeight);
+
+
   const [currentWeight, setCurrentWeight] = useState(userData.currentWeight);
   const [isEditingWeight, setIsEditingWeight]= useState(false);
 
   // Calculate the BMI and round it to one decimal place!
-  const BMI = (currentWeight / ((userData.height / 100) ** 2)).toFixed(1);
+  // const BMI = (currentWeight / ((userData.height / 100) ** 2)).toFixed(1);
+  const BMI = (editableWeight / ((userData.height / 100) ** 2)).toFixed(1);
+
 
   // Determine the BMI category
   const getBMICategory=(bmi)=>{
@@ -37,6 +42,7 @@ function BodyMetrics() {
   const handleWeightChange = (e) => {
     setCurrentWeight(e.target.value);
   };
+  
   const handleWeightSubmit=()=>{
     if (isEditingWeight){
       dispatch(setUserCurrentWeight(currentWeight));
@@ -54,28 +60,28 @@ function BodyMetrics() {
   
   return (
     <div className="weight-page">
-      <h1>Body Metrics Tracking</h1>
-      <h2>Log Today's Intake and Plan for Tomorrow!</h2>
-        <div>
-          {isEditingWeight ? (
-            <>
-              <input 
-                type="number"
-                value={currentWeight}
-                onChange={handleWeightChange}
-                placeholder="Current Weight (in Kg)"
-              />
-              <button onClick={handleWeightSubmit}>Submit</button>
-            </>
-          ) : (
-            <>        
-                <p>Your Current Weight is {currentWeight} Kg.</p>
-                <button onClick={handleEditWeightToggle}>Edit</button>
-                <p>Your Current Body Mass Index is {BMI}.</p>
-                <p>Normal Weight Range for you is {((((userData.height)/100)**2)*18.5).toFixed(1)} - {((((userData.height)/100)**2)*25).toFixed(1)} Kg!</p>
-            </>
-          )}
-        </div>
+        <h1>Body Metrics Tracking</h1>
+        <h2>Log Today's Intake and Plan for Tomorrow!</h2>
+            <div className="animated-message editable-message">
+                 {isEditingWeight ? (
+                  <>
+                    <input 
+                      type="number"
+                      value={currentWeight}
+                      onChange={handleWeightChange}
+                      placeholder="Current Weight (in Kg)"
+                    />
+                    <button onClick={handleWeightSubmit}>Submit</button>
+                  </>
+                ) : (
+                  <>        
+                  <p>Your Current Weight is {currentWeight} Kg.
+                  <button onClick={handleEditWeightToggle}>Edit</button></p>
+                  <p>Your Current Body Mass Index is {BMI}.</p>
+                  <p>Normal Weight Range for you is {((((userData.height)/100)**2)*18.5).toFixed(1)} - {((((userData.height)/100)**2)*25).toFixed(1)} Kg!</p>
+              </>
+            )}
+          </div>
         <button onClick={toggleWeightHistory}>View Your Body Metric Progress!</button>
         {showGraph && <WeightHistoryGraph />}
 

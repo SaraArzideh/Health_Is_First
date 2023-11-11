@@ -1,6 +1,6 @@
 /* Base Styles */
 body, .App {
-  font-family: sans-serif;
+  font-family: Lato;
   text-align: center;
   margin: 0;
   background: linear-gradient(to right, #4abe82,#ee3890);
@@ -20,7 +20,7 @@ body, .App {
 
 /* Typography */
 h1, h2 {
-  font-family: /*'Snap ITC',*/ sans-serif;
+  font-family: Lato /*'Snap ITC',sans-serif*/;
   font-weight: bold;
   font-style: normal;
 }
@@ -45,7 +45,7 @@ p {
 .footer {
   margin-top: auto;
   color: rgb(0, 0, 0);
-  font-family: sans-serif;
+  font-family: Lato;
   font-size: 20px;  
   font-weight: normal;
   font-style: normal;
@@ -100,19 +100,19 @@ p {
 /* Buttons Styles */
 .btn , button{
   border: none;
-  font-family: sans-serif;
+  font-family: Lato;
   border-radius: 4px;
   color: rgb(0, 0, 0);
   padding: 10px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 20px;
   font-weight:600;
   margin: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
-  background-color: #58b2b9; 
+  background-color: #b092bd; 
   transition-duration: 0.4s; /* Animation */
 }
 
@@ -137,6 +137,7 @@ p {
 
 .navbar-links a, .navbar-links, .navbar-tex {
   margin-right: 10px;
+  font-family: Lato;
   font-size:20px ; 
   color:black; 
 }
@@ -148,6 +149,8 @@ p {
 .welcome-message{
   margin-right:10px;
   color: black;
+  font-family: Lato;
+  font-size:20px ; 
 }
 
 .button-group{
@@ -198,4 +201,122 @@ input::placeholder {
 font-size: 30px;
 color:#010101;
 background-color: #bae5ed;
+}
+
+/* Animation of BodyTracker */
+
+.animated-message {
+  animation: slideIn 5s ease forwards;
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+@keyframes slideInAndOut {
+  0% {
+    transform: translateX(-100%); /* Start off-screen in the left */
+    opacity: 0;
+  }
+  10% {
+    transform: translateX(0); /* Move to center */
+    opacity: 1;
+  }
+  90% {
+    transform: translateX(0); /* Stay in center */
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%); /* End off-screen to the right */
+    opacity: 0;
+  }
+}
+
+.editable-message {
+  margin: auto;
+  padding: 60px;
+  border-radius: 100px;
+  background-image: url('../public/BMIMessage.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 750px;
+  height: 340px; 
+  animation: slideInAndOut 17s ease-in-out forwards;
+  position:center;
+  font-family: Lato; 
+  font-size: 16px; 
+  color: #333;
+}
+
+.editable-message:hover {
+  background-color: rgb(226, 226, 226);
+}
+
+.editable-input {
+  border: none;
+  background: none;
+  font-size: inherit;
+  width: 100%;
+}
+/* Animation of ActivityTracker ball*/
+@keyframes throwBall {
+  0% {
+    left: 0;
+    top: 0;
+    transform: scale(0.5);
+  }
+  25% {
+    left: 20%;
+    top: 70%;
+    transform: scale(0.6);
+  }
+  50% {
+    left: 40%;
+    top: 30%;
+    transform: scale(0.7);
+  }
+  75% {
+    left: 60%;
+    top: 70%;
+    transform: scale(0.9);
+  }
+  100% {
+    left: 80%;
+    top: 40%;
+    transform: scale(1.2);
+  }
+}
+.activity-tracker-message {
+  margin: 0; /* Center */
+  border-radius: 60%; /* make it a circle */
+  padding-top: 90px;
+  padding-left: 30px;
+  padding-right: 40px;
+  height: 250px;
+  width: 250px; 
+  background-image: url('../public/ActMessage.jpg');
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0 ;
+  left:0;
+  animation:  throwBall 2s cubic-bezier(.17,.67,.83,.67) forwards;
+}
+.activity-tracker-message p {
+  font-family: Lato; 
+  font-size: 20px;
+  font-weight:600;
+}
+.activity-tracker-message button {
+  margin-top: 15px; 
+  margin-left: 20px;
+  font-family: Lato;
+  border-radius: 50%;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  font-weight:600;
+  cursor: pointer;
+  background-color: #b8ca7200; 
 }
