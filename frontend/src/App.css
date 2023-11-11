@@ -279,7 +279,7 @@ background-color: #bae5ed;
     transform: scale(0.9);
   }
   100% {
-    left: 80%;
+    left: 75%;
     top: 40%;
     transform: scale(1.2);
   }
@@ -300,7 +300,7 @@ background-color: #bae5ed;
   position: absolute;
   top: 0 ;
   left:0;
-  animation:  throwBall 2s cubic-bezier(.17,.67,.83,.67) forwards;
+  animation:  throwBall 1.5s cubic-bezier(.37,.67,.63,.67) forwards;
 }
 .activity-tracker-message p {
   font-family: Lato; 

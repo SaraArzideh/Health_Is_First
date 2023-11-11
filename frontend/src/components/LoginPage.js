@@ -117,6 +117,30 @@ const LoginPage = (props) => {
 									onChange={onChange}
 									value={state.currentWeight} />
 							</div>
+							</div>
+
+						<div className="form-row">
+
+							<div className="form-group">
+								<label htmlFor="gender">Gender</label>
+								<select id="gender" name="gender" onChange={onChange}>
+									<option value="male">Male</option>
+									<option value="female">Female</option>
+									<option value="nonbinary">Non-binary</option>
+								</select>
+								</div>
+								<div className="form-group">
+								<label htmlFor="lifestyle">Lifestyle</label>
+								<select id="lifestyle" name="lifestyle" onChange={onChange}>
+									<option value="low-active">Low-Active</option>
+									<option value="moderate-active">Moderate-Active</option>
+									<option value="active">Active</option>
+								</select>
+								</div>
+								<div className="form-group">
+								<label htmlFor="exceptional">Exceptional Situation</label>
+								<input type="checkbox" id="exceptional" name="exceptional" onChange={onChange} />
+								</div>
 						</div>
 						<div className="form-group">
 							<label htmlFor="targetActivity" className="form-label">Target Activity (minutes/day)</label>
@@ -127,15 +151,7 @@ const LoginPage = (props) => {
 								onChange={onChange}
 								value={state.activityGoal} />
 						</div>
-						<div className="form-group">
-							<label htmlFor="targetCalories" className="form-label">Target Consuming Calories (Calories/day)</label>
-							<input type="text"
-								id="dietGoal"
-								name="dietGoal"
-								className="form-control"
-								onChange={onChange}
-								value={state.dietGoal} />
-						</div>
+
                     </div>
                 )}
 				<div>
