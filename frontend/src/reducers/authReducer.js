@@ -1,9 +1,10 @@
 import {
     LOGIN_SUCCESS,
-    LOGOUT, SIGNUP_SUCCESS,
+    LOGOUT,
+    SIGNUP_SUCCESS,
     AUTH_ERROR,
     SET_USER_ACTIVITY_GOAL,
-    SET_USER_DIET_GOAL,
+    SET_USER_TODAY_DIET,
     SET_USER 
 } from '../actions/authActions';
 
@@ -12,7 +13,7 @@ const initialState = {
     isLoggedIn: false,
     error: null,
     activityGoal: null,
-    dietGoal: null,
+    todayDiet: null,
     currentWeight:null,
 };
  
@@ -20,6 +21,7 @@ const initialState = {
     switch(action.type) {
        case LOGIN_SUCCESS:
        case SIGNUP_SUCCESS:
+       case SET_USER:
             return {
              ...state,
              user: action.payload,
@@ -28,16 +30,13 @@ const initialState = {
             };
        case LOGOUT:
             return {
-             ...state,
-             user: null,
-             isLoggedIn: false,
-             error: null
+             ...initialState,
             };
         case AUTH_ERROR:
             return{
                 ...state,
                 error: action.payload,               
-            }
+            };
         case SET_USER_ACTIVITY_GOAL:
             return{
                 ...state,
@@ -47,21 +46,14 @@ const initialState = {
                 }
             }; 
 
-        case SET_USER_DIET_GOAL:
+        case SET_USER_TODAY_DIET:
             return{
                 ...state,
                 user: {
                     ...state.user,
-                    dietGoal: action.payload
+                    todayDiet: action.payload
                 }
-            }; 
-        case SET_USER:
-            return{
-                ...state,
-                user: action.payload,
-                isLoggedIn: true,
-                error:null, 
-            }          
+            };        
         default:
             return state;
     }

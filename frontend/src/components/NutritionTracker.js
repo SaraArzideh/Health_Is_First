@@ -1,50 +1,52 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { setUserDietGoal } from '../actions/authActions';
+import { setUserTodayDiet } from '../actions/authActions';
 import * as d3 from 'd3';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function NutritionTracker() {
+  const dispatch = useDispatch();
+  const user = useSelector(state=> state.auth.user || {});
 
-  // State for form inputs
-  const [gender, setGender] = useState('');
-  const [activityLevel, setActivityLevel] = useState('');
-  const [exceptionalSituation, setExceptionalSituation] = useState(false);
-  const [todaysCalories, setTodaysCalories] = useState(0);
-  const [dietGoal, setDietGoal] = useState(null);
-  
-  // from Redux store
-  const age = useSelector(state => state.auth.user?.age);
-  const dispatch= useDispatch();
+  // States for managing inputs and messages
+  const [todayDiet, setTodayDiet] = useState('');
+  const [optimalDiet, setOptimalDiet] = useState(null);
 
-    // Conditional rendering & calculating
-    const calculateDietGoal = () => {
-      if (exceptionalSituation) {
-        alert("The Health is First, could not recommend nutrition in exceptional situations. It would be better to consult with a professional!");
+  // Calculate the optimal diet on component mount or when user data changes
+  useEffect(() => {
+    if (user && user.id) {
+      calculateOptimalDiet();
+    }
+  }, [user]);
+
+  // Conditional rendering & calculating
+  const calculateOptimalDiet = () => {
+      if (user.exceptionalSituation) {
+        setOptimalDiet("The Health is First, do not recommend diet in exceptional situations. Please consult a professional!");
         return;
       }
-      let calculatedDietGoal = 0;
-      
+  const calculatedOptimalDiet =0;
   // Female user diet goal calculation
-  if (gender === 'female') {
-    switch (activityLevel) {
+  if (user.gender === 'female') {
+    switch (user.activityLevel) {
       case 'low-activity':
-        if (age >= 14 && age <= 18) calculatedDietGoal = 1800;
-        else if (age >= 19 && age <= 30) calculatedDietGoal = 1900; // Average between 1800 and 2000
-        else if (age >= 31 && age <= 50) calculatedDietGoal = 1800;
-        else if (age > 51) calculatedDietGoal = 1600;
+        if (user.age >= 14 && user.age <= 18) calculatedOptimalDiet = 1800;
+        else if (user.age >= 19 && user.age <= 30) calculatedOptimalDiet = 1900; // Averuser.age between 1800 and 2000
+        else if (user.age >= 31 && user.age <= 50) calculatedOptimalDiet = 1800;
+        else if (user.age > 51) calculatedOptimalDiet = 1600;
         break;
       case 'moderate-activity':
-        if (age >= 14 && age <= 18) calculatedDietGoal = 2000;
-        else if (age >= 19 && age <= 30) calculatedDietGoal = 2100; // Average between 2000 and 2200
-        else if (age >= 31 && age <= 50) calculatedDietGoal = 2000;
-        else if (age > 51) calculatedDietGoal = 1800;
+        if (user.age >= 14 && user.age <= 18) calculatedOptimalDiet = 2000;
+        else if (user.age >= 19 && user.age <= 30) calculatedOptimalDiet = 2100; // Average between 2000 and 2200
+        else if (user.age >= 31 && user.age <= 50) calculatedOptimalDiet = 2000;
+        else if (user.age > 51) calculatedOptimalDiet = 1800;
         break;
       case 'active':
-        if (age >= 14 && age <= 18) calculatedDietGoal = 2400;
-        else if (age >= 19 && age <= 30) calculatedDietGoal = 2400;
-        else if (age >= 31 && age <= 50) calculatedDietGoal = 2200;
-        else if (age > 51) calculatedDietGoal = 2200;
+        if (user.age >= 14 && user.age <= 18) calculatedOptimalDiet = 2400;
+        else if (user.age >= 19 && user.age <= 30) calculatedOptimalDiet = 2400;
+        else if (user.age >= 31 && user.age <= 50) calculatedOptimalDiet = 2200;
+        else if (user.age > 51) calculatedOptimalDiet = 2200;
         break;
       default:
         alert("You didn't define your life style!");
@@ -53,25 +55,25 @@ function NutritionTracker() {
   }
 
   // Male user diet goal calculation
-  if (gender === 'male') {
-    switch (activityLevel) {
+  if (user.gender === 'male'|| 'nonbinary') {
+    switch (user.activityLevel) {
       case 'low-activity':
-        if (age >= 14 && age <= 18) calculatedDietGoal = 2200; // Average between 2000 and 2400
-        else if (age >= 19 && age <= 30) calculatedDietGoal = 2500; // Average between 2400 and 2600
-        else if (age >= 31 && age <= 50) calculatedDietGoal = 2300; // Average between 2200 and 2400
-        else if (age > 51) calculatedDietGoal = 2100; // Average between 2000 and 2200
+        if (user.age >= 14 && user.age <= 18) calculatedOptimalDiet = 2200; // Average between 2000 and 2400
+        else if (user.age >= 19 && user.age <= 30) calculatedOptimalDiet = 2500; // Average between 2400 and 2600
+        else if (user.age >= 31 && user.age <= 50) calculatedOptimalDiet = 2300; // Average between 2200 and 2400
+        else if (user.age > 51) calculatedOptimalDiet = 2100; // Average between 2000 and 2200
         break;
       case 'moderate-activity':
-        if (age >= 14 && age <= 18) calculatedDietGoal = 2600; // Average between 2400 and 2800
-        else if (age >= 19 && age <= 30) calculatedDietGoal = 2700; // Average between 2600 and 2800
-        else if (age >= 31 && age <= 50) calculatedDietGoal = 2500; // Average between 2400 and 2600
-        else if (age > 51) calculatedDietGoal = 2300; // Average between 2200 and 2400
+        if (user.age >= 14 && user.age <= 18) calculatedOptimalDiet = 2600; // Average between 2400 and 2800
+        else if (user.age >= 19 && user.age <= 30) calculatedOptimalDiet = 2700; // Average between 2600 and 2800
+        else if (user.age >= 31 && user.age <= 50) calculatedOptimalDiet = 2500; // Average between 2400 and 2600
+        else if (user.age > 51) calculatedOptimalDiet = 2300; // Average between 2200 and 2400
         break;
       case 'active':
-        if (age >= 14 && age <= 18) calculatedDietGoal = 3000; // Average between 2800 and 3200
-        else if (age >= 19 && age <= 30) calculatedDietGoal = 3000;
-        else if (age >= 31 && age <= 50) calculatedDietGoal = 2900; // Average between 2800 and 3000
-        else if (age > 51) calculatedDietGoal = 2600; // Average between 2400 and 2800
+        if (user.age >= 14 && user.age <= 18) calculatedOptimalDiet = 3000; // Average between 2800 and 3200
+        else if (user.age >= 19 && user.age <= 30) calculatedOptimalDiet = 3000;
+        else if (user.age >= 31 && user.age <= 50) calculatedOptimalDiet = 2900; // Average between 2800 and 3000
+        else if (user.age > 51) calculatedOptimalDiet = 2600; // Average between 2400 and 2800
         break;
       default:
         alert("You didn't define your life style!");
@@ -80,25 +82,55 @@ function NutritionTracker() {
   }
 
   // update the state
-  setDietGoal(calculatedDietGoal);
+  setOptimalDiet(calculatedOptimalDiet);
+  dispatch(setUserTodayDiet(calculatedOptimalDiet));
 };
 
-
-
-
-
-
+  // Function to handle the submission of today's consumed calories
+  const handleTodayDietSubmit = () => {
+    const difference = optimalDiet - todayDiet;
+    if (difference > 0) {
+      toast.info('Today you eat less than your diet');
+    } else if (difference === 0) {
+      toast.success('Today you reached your diet target, Keep continue in next days!');
+    } else {
+      toast.warning('Today you eat more than your diet!');
+    }
+    dispatch(setUserTodayDiet(todayDiet));
+  };
 
   return (
     <div className="diet-page">
       <h1>What You Eat Matters, Let's Track It!</h1>
-      <p>Your Current Daily Diet Goal is to Consume {dietGoal} Calories per day.</p>
 
-      <input placeholder="Calories" />
-      {/* Visualization component for diet tracking comes here */}
+      {user?.exceptionalSituation && (
+        <p>The Health is First, do not recommend diet in exceptional situations. Please consult a professional!</p>
+      )}
+
+      {!user?.exceptionalSituation && (
+        <p>According to the data you provided, You should consume {optimalDiet} calories each day.</p>
+      )}
+
+      {/* input holder to enter today's diet */}
+      <div className="form-group">
+        <label htmlFor="todayDiet">Today's Consuming Calories:</label>
+        <input
+          type="number"
+          id="todayDiet"
+          value={todayDiet}
+          onChange={e => setTodayDiet(e.target.value)}
+          placeholder="Enter today's consumed calories"
+        />
+        <button onClick={handleTodayDietSubmit}>Submit</button>
+      </div>
+
+      {/* Placeholder for the graph */}
+      <div id="calories-history-graph">
+        {/* D3 graph would come here */}
+      </div>
       <button className="btn"><Link to="/">Back to Home Page</Link></button>
     </div>
   );
-}
+};
 
 export default NutritionTracker;

@@ -11,7 +11,14 @@ const userSchema = new mongoose.Schema({
     currentWeight: Number,
     age: Number,
     activityGoal: Number,
-    dietGoal: Number
+    gender: String,
+    exceptionalSituation: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    activityLevel: String,
+    todayDiet: Number
 });
 
 module.exports = mongoose.model('User',userSchema);

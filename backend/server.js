@@ -3,13 +3,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const bcrypt = require ('bcrypt');
-const crypto = require ('crypto');
 
 const dietRoute = require('./routes/dietRoute');
 const weightRoute = require('./routes/weightRoute');
 const activityRoute = require ('./routes/activityRoute');
 const userRoute= require ('./routes/userRoute');
+const authMiddleware = require('./middleware/authMiddleware');
 
 const User = require('./models/user')
 const Session = require('./models/session');
@@ -23,6 +22,8 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(bodyParser.json());
+
+//Authentication route
 app.use('/', userRoute);
 
 // MongoDB Connection Setup
@@ -44,13 +45,6 @@ mongoose.connect(mongoURI, {
 //LOGIN DATABASE
 const time_to_live_diff = 3600000;
 
-/*
-//LOGIN MIDDLEWARES
-const createToken = () => {
-	let token = crypto.randomBytes(64);
-	return token.toString("hex");
-}
-*/
 
 const isUserLogged = (req,res,next) => {
 	if(!req.headers.token) {
@@ -170,7 +164,7 @@ app.post("/logout",function(req,res) {
 	})
 })
 
-// Routes
+// Protected Routes
 app.use('/diet',isUserLogged, dietRoute);
 app.use('/weight',isUserLogged, weightRoute);
 app.use('/activity',isUserLogged, activityRoute);

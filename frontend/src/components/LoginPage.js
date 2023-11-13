@@ -6,7 +6,7 @@ import * as d3 from 'd3';
 
 const LoginPage = (props) => {
 	
-	const [state,setState] = useState({
+	const [formData,setformData] = useState({
 		email: "",
 		username:"",
 		password:"",
@@ -14,41 +14,38 @@ const LoginPage = (props) => {
 		height: "",
         currentWeight: "",
         activityGoal: "",
-        dietGoal: ""
+		gender: "male",
+		activityLevel: "low-active",
+		exceptionalSituation: "false"
 	})
 	const dispatch= useDispatch();
 	const navigate= useNavigate();
 
 	const onChange = (event) => {
-		setState((state) => {
-			return {
-				...state,
-				[event.target.name]:event.target.value
-			}
-		})
-	}
+		setformData({...formData, [event.target.name]: event.target.type==='checkbox' ? event.target.checked : event.target.value});
+	};
 	
-	const onSubmit = (event) => {
+	const onSubmit = async (event) => {
 		event.preventDefault();
-		console.log ("submit button clicked with values",state); // Debug log
+		console.log ("submitting form data",formData); // Debug log
 
-		if(state.username.length < 4 || state.password.length < 8) {
+		if(formData.username.length < 4 || formData.password.length < 8) {
 			props.setError("Username must be atleast 4 and password 8 characters long");
 			return;
 		}
 		let user = {
-			...state
+			...formData
 		}
 
 		console.log("Attempting to register/login with user: ", user)// Debug log
 
 		if(event.target.name === "register") {
 			console.log("Registering user"); // Debug log
-			dispatch (signupUser(user));
+			dispatch (signupUser(formData));
 			navigate('/'); // Redirect to home on successful registration
 		} else {
 			console.log("Logging in user"); // Debug log
-			dispatch(loginUser(user));
+			dispatch(loginUser(formData));
 			navigate('/'); // Redirect to home on successful login
 		}
 	}
@@ -67,7 +64,7 @@ const LoginPage = (props) => {
 						name="email"
 						className="form-control"
 						onChange={onChange}
-						value={state.email}/>
+						value={formData.email}/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="username" className="form-label">Username</label>
@@ -76,7 +73,7 @@ const LoginPage = (props) => {
 						name="username"
 						className="form-control"
 						onChange={onChange}
-						value={state.username}/>
+						value={formData.username}/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="password" className="form-label">Password</label>
@@ -85,7 +82,7 @@ const LoginPage = (props) => {
 						name="password"
 						className="form-control"
 						onChange={onChange}
-						value={state.password}/>
+						value={formData.password}/>
 				</div>
 				{props.isSignUp && (
                     <div className="additional-details">
@@ -97,7 +94,7 @@ const LoginPage = (props) => {
 									name="age"
 									className="form-control"
 									onChange={onChange}
-									value={state.age} />
+									value={formData.age} />
 							</div>
 							<div className="form-group col-md-4">
 								<label htmlFor="height" className="form-label">Height (Centimeters)</label>
@@ -106,7 +103,7 @@ const LoginPage = (props) => {
 									name="height"
 									className="form-control"
 									onChange={onChange}
-									value={state.height} />
+									value={formData.height} />
 							</div>
 							<div className="form-group col-md-4">
 								<label htmlFor="currentWeight" className="form-label">Current Weight (Kg)</label>
@@ -115,32 +112,28 @@ const LoginPage = (props) => {
 									name="currentWeight"
 									className="form-control"
 									onChange={onChange}
-									value={state.currentWeight} />
+									value={formData.currentWeight} />
 							</div>
 							</div>
 
 						<div className="form-row">
 
-							<div className="form-group">
+						<div className="form-group col-md-6">
 								<label htmlFor="gender">Gender</label>
 								<select id="gender" name="gender" onChange={onChange}>
-									<option value="male">Male</option>
-									<option value="female">Female</option>
-									<option value="nonbinary">Non-binary</option>
+									<option className='option' value="male">Male</option>
+									<option className='option' value="female">Female</option>
+									<option className='option' value="nonbinary">Non-binary</option>
 								</select>
-								</div>
-								<div className="form-group">
-								<label htmlFor="lifestyle">Lifestyle</label>
-								<select id="lifestyle" name="lifestyle" onChange={onChange}>
-									<option value="low-active">Low-Active</option>
-									<option value="moderate-active">Moderate-Active</option>
-									<option value="active">Active</option>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="activityLevel">Life-Style</label>
+								<select id="activityLevel" name="activityLevel" onChange={onChange}>
+									<option className='option' value="low-active">Low-Active</option>
+									<option className='option' value="moderate-active">Moderate-Active</option>
+									<option className='option' value="active">Active</option>
 								</select>
-								</div>
-								<div className="form-group">
-								<label htmlFor="exceptional">Exceptional Situation</label>
-								<input type="checkbox" id="exceptional" name="exceptional" onChange={onChange} />
-								</div>
+							</div>
 						</div>
 						<div className="form-group">
 							<label htmlFor="targetActivity" className="form-label">Target Activity (minutes/day)</label>
@@ -149,9 +142,18 @@ const LoginPage = (props) => {
 								name="activityGoal"
 								className="form-control"
 								onChange={onChange}
-								value={state.activityGoal} />
+								value={formData.activityGoal} />
 						</div>
-
+						<div className="form-group">
+							<div className="checkbox-custom">
+								<input 
+									type="checkbox"
+									id="exceptionalSituation"
+									name="exceptionalSituation"
+									checked = {formData.exceptionalSituation}
+									onChange={onChange} />
+								<label htmlFor="exceptionalSituation">I don't have a special circumstance (e.g., pregnancy, disease).</label>							</div>
+						</div>
                     </div>
                 )}
 				<div>

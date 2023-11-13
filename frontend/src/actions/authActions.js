@@ -1,4 +1,3 @@
-import { useId } from "react";
 
 // Action Types
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -6,7 +5,7 @@ export const LOGOUT = 'LOGOUT';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const SET_USER_ACTIVITY_GOAL = 'SET_USER_ACTIVITY_GOAL';
-export const SET_USER_DIET_GOAL = 'SET_USER_DIET_GOAL';
+export const SET_USER_TODAY_DIET = 'SET_USER_TODAY_DIET';
 export const SET_USER_CURRENT_WEIGHT ='SET_USER_CURRENT_WEIGHT';
 export const SET_USER= 'SET_USER';
 // Action Creators
@@ -28,10 +27,10 @@ export const setUserCurrentWeight = (currentWeight) => {
 };
 
 // User Diet Goal
-export const setUserDietGoal = (dietGoal) => {
+export const setUserTodayDiet = (todayDiet) => {
    return {
-       type: SET_USER_DIET_GOAL,
-       payload: dietGoal
+       type: SET_USER_TODAY_DIET,
+       payload: todayDiet
    };
 };
 
@@ -86,6 +85,7 @@ export const signupUser = (userInfo) => {
 // Logout User
 export const logoutUser = () => {
    localStorage.removeItem('token'); // Remove token from storage
+   localStorage.removeItem('user');
    return (dispatch) => {
       dispatch({ type: LOGOUT });
    };
@@ -94,8 +94,11 @@ export const logoutUser = () => {
 //load the user data from local storage 
 export const loadUser=()=>{
    const userData=localStorage.getItem('user');
-   return {
-      type:SET_USER_ACTIVITY_GOAL,
-      payload: JSON.parse(userData)
-   };
+   if (userData) {
+      return {
+       type:SET_USER, payload: JSON.parse(userData)};
+   } else {
+      return{
+      type:AUTH_ERROR, payload: 'No user data'};
+   }
 };

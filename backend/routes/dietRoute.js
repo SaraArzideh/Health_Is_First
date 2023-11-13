@@ -16,14 +16,14 @@ router.get('/', async (req, res) => {
 
 // Add a new diet entry
 router.post('/', async (req, res) => {
-    if (!req.body || !req.body.userId || !req.body.date || req.body.caloriesConsumed === undefined) {
+    if (!req.body || !req.body.userId || !req.body.date || req.body.todayDiet === undefined) {
         return res.status(400).json({ message: "Bad Request" });
     }
 
     const dietEntry = new Diet({
         userId: req.body.userId,
         date: req.body.date,
-        caloriesConsumed: req.body.caloriesConsumed
+        todayDiet: req.body.todayDiet
     });
 
     try {
