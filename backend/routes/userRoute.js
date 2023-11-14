@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const authMiddleware = require('../middleware/authMiddleware');
+const {isUserLogged} = require ('../middleware/authMiddleware');
 const {
     registerUser,
     loginUser,
@@ -17,12 +17,12 @@ router.post('/login', loginUser);
 
 // Using authMiddleware to protect routes that require authentication
 // Route to fetch user profile
-router.get('/profile', authMiddleware, getUserProfile);
+router.get('/profile', isUserLogged, getUserProfile);
     
 // Route to update user profile
-router.put('/goals/:userId', authMiddleware, updateUserProfile);
+router.put('/goals/:userId', isUserLogged, updateUserProfile);
 
 // Route to delete User
-router.delete('/profile', authMiddleware, deleteUser);    
+router.delete('/profile', isUserLogged, deleteUser);    
 
 module.exports = router;

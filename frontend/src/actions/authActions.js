@@ -6,6 +6,8 @@ export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const SET_USER_ACTIVITY_GOAL = 'SET_USER_ACTIVITY_GOAL';
 export const SET_USER_TODAY_DIET = 'SET_USER_TODAY_DIET';
+export const SET_USER_TOTAL_TODAY_DIET = 'SET_USER_TOTAL_TODAY_DIET';
+export const SET_USER_OPTIMAL_DIET = 'SET_USER_OPTIMAL_DIET';
 export const SET_USER_CURRENT_WEIGHT ='SET_USER_CURRENT_WEIGHT';
 export const SET_USER= 'SET_USER';
 // Action Creators
@@ -28,10 +30,26 @@ export const setUserCurrentWeight = (currentWeight) => {
 
 // User Diet Goal
 export const setUserTodayDiet = (todayDiet) => {
+   console.log("Dispatching setUserTodayDiet with payload: ", todayDiet); //Debugging checker
    return {
        type: SET_USER_TODAY_DIET,
        payload: todayDiet
    };
+};
+
+export const setUsertotalTodayDiet = (totalTodayDiet) => {
+   console.log("Dispatching setUserTodayDiet with payload: ", totalTodayDiet); //Debugging checker
+   return {
+       type: SET_USER_TOTAL_TODAY_DIET,
+       payload: totalTodayDiet
+   };
+};
+
+ export const setUserOptimalDiet = (optimalDiet)=>{
+   return {
+      type: SET_USER_OPTIMAL_DIET,
+      payload: optimalDiet
+ };
 };
 
 // Login User

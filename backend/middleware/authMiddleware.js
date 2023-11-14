@@ -17,4 +17,40 @@ const authMiddleware = (req, res, next) => {
     }
 };
 
-module.exports = authMiddleware;
+const isUserLogged = (req,res,next) => {
+	if(!req.headers.token) {
+		return res.status(403).json({"Message":"Forbidden"});
+	}
+	Session.findOne({"token":req.headers.token}).then(function(session) {
+		if(!session) {
+			return res.status(403).json({"Message":"Forbidden"});
+		}
+		let now = Date.now();
+		if(now > session.ttl) {
+			Session.deleteOne({"_id":session._id}).then(function() {
+				return res.status(403).json({"Message":"Forbidden"})
+			}).catch(function(error) {
+				console.log("Failed to remove session. Reason",error);
+				return res.status(403).json({"Message":"Forbidden"})
+			})
+		} else {
+			session.ttl = now + time_to_live_diff;
+			req.session = {};
+			req.session.user = session.user;
+			session.save().then(function() {
+				return next();
+			}).catch(function(error) {
+				console.log("Failed to resave session. Reason",error);
+				return next();
+			})
+		}
+	}).catch(function(error){
+		console.log("Failed to find session. Reason",error);
+		return res.status(403).json({"Message":"Forbidden"})
+	})
+}
+
+module.exports ={
+	authMiddleware,
+	isUserLogged
+};

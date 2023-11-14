@@ -7,9 +7,10 @@ const config = require('../config');
 
 // User Registration
 const registerUser = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, age, height, currentWeight, gender, activityLevel, exceptionalSituation, activityGoal } = req.body;
 
-    if (!username || !email || !password) {
+
+    if (!username || !email || !password || !age || !height || !currentWeight) {
         return res.status(400).json({ message: 'Please enter all fields' });
     }
     // Check if the user already exists
@@ -17,26 +18,27 @@ const registerUser = async (req, res) => {
     if (existingUser) return res.status(400).json({ message: 'User already exists' });
 
     // Hash the password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(password, await bcrypt.genSalt(10));
 
     const newUser = new User({
         username,
         email,
         password: hashedPassword,
-        age: req.body.age,
-        height:req.body.height,
-        currentWeight:req.body.currentWeight,
-        gender: req.body.gender,
-        activityLevel:req.body.activityLevel,
-        exceptionalSituation : req.body.exceptionalSituation,
-        activityGoal:req.body.activityGoal,
+        age,
+        height,
+        currentWeight,
+        gender,
+        activityLevel,
+        exceptionalSituation,
+        activityGoal,
     });
 
     try {
         const savedUser = await newUser.save();
-        //Respond with the new user data but exclude the password
-        res.status(201).json({ user: savedUser.toObject({ getters: true, virtuals: false }) });
+        // exclude the password from the response
+        const userResponse = savedUser.toObject();
+        delete userResponse.password;
+        res.status(201).json({ user: userResponse });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error' });
@@ -46,6 +48,10 @@ const registerUser = async (req, res) => {
 // User Login
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
+        // Validate request
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Please enter all fields' });
+        }
     try {
         // Check if the user exists
         const user = await User.findOne({ email });

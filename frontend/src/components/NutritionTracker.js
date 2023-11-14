@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { setUserTodayDiet } from '../actions/authActions';
+import { setUserTodayDiet, setUsertotalTodayDiet, setUserOptimalDiet } from '../actions/authActions';
 import * as d3 from 'd3';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -10,23 +10,28 @@ function NutritionTracker() {
   const user = useSelector(state=> state.auth.user || {});
 
   // States for managing inputs and messages
-  const [todayDiet, setTodayDiet] = useState('');
+  //const [todayDiet, setTodayDiet] = useState('');
   const [optimalDiet, setOptimalDiet] = useState(null);
 
   // Calculate the optimal diet on component mount or when user data changes
   useEffect(() => {
-    if (user && user.id) {
-      calculateOptimalDiet();
-    }
+    console.log("Inside useEffect, user:", user);   
+    console.log("About to call calculateOptimalDiet");
+    calculateOptimalDiet();
+  
   }, [user]);
 
   // Conditional rendering & calculating
   const calculateOptimalDiet = () => {
+
       if (user.exceptionalSituation) {
+
+        console.log("Calculated Optimal Diet: ", calculatedOptimalDiet);  //Debugging checker
         setOptimalDiet("The Health is First, do not recommend diet in exceptional situations. Please consult a professional!");
         return;
       }
-  const calculatedOptimalDiet =0;
+  let calculatedOptimalDiet =0;
+  
   // Female user diet goal calculation
   if (user.gender === 'female') {
     switch (user.activityLevel) {
@@ -52,10 +57,7 @@ function NutritionTracker() {
         alert("You didn't define your life style!");
         break;
     }
-  }
-
-  // Male user diet goal calculation
-  if (user.gender === 'male'|| 'nonbinary') {
+  }else if (user.gender === 'male'|| user.gender === 'nonbinary') {
     switch (user.activityLevel) {
       case 'low-activity':
         if (user.age >= 14 && user.age <= 18) calculatedOptimalDiet = 2200; // Average between 2000 and 2400
@@ -79,25 +81,50 @@ function NutritionTracker() {
         alert("You didn't define your life style!");
         break;
     }
+  }else{
+    console.log("Gender not specified or does not match 'female', 'male', or 'nonbinary'.");
+
   }
 
-  // update the state
+  // update the state with calculated value
   setOptimalDiet(calculatedOptimalDiet);
-  dispatch(setUserTodayDiet(calculatedOptimalDiet));
+  // dispatch an action to update the store with the new value
+  dispatch(setUserOptimalDiet(calculatedOptimalDiet));
 };
+
+  const [todayDietEntries, setTodayDietEntries] = useState([]);
 
   // Function to handle the submission of today's consumed calories
   const handleTodayDietSubmit = () => {
-    const difference = optimalDiet - todayDiet;
-    if (difference > 0) {
-      toast.info('Today you eat less than your diet');
-    } else if (difference === 0) {
-      toast.success('Today you reached your diet target, Keep continue in next days!');
-    } else {
-      toast.warning('Today you eat more than your diet!');
-    }
-    dispatch(setUserTodayDiet(todayDiet));
+    const newEntry = Number(todayDiet); // Convert todayDiet to a number
+    setTodayDietEntries(prevEntries=>[...prevEntries, newEntry]);
+
+    // Reset the input field
+    setTodayDiet('');
   };
+
+  //function to calculate the sum of today's diet(entries)
+  const sumOfTodayDiet = () => {
+    return todayDietEntries.reduce((acc, entry) => acc + entry, 0);
+  };
+
+  // Effect hook to show the toast message when todayDietEntries changes
+  useEffect(() => {
+    const totalTodayDiet = sumOfTodayDiet();
+    const difference = optimalDiet - totalTodayDiet;
+
+    if (difference > 0) {
+      toast.info(`Today you've eaten ${totalTodayDiet} calories, which is ${difference} less than your diet target.`);
+    } else if (difference === 0) {
+      toast.success(`Great! You've reached your diet target of ${optimalDiet} calories for today.`);
+    } else {
+      const over = Math.abs(difference);
+      toast.warning(`You've exceeded your diet target by ${over} calories.`);
+    }
+    dispatch(setUsertotalTodayDiet(totalTodayDiet));
+  }, [todayDietEntries, optimalDiet]);
+
+  const [todayDiet, setTodayDiet] = useState('');
 
   return (
     <div className="diet-page">
@@ -118,11 +145,19 @@ function NutritionTracker() {
           type="number"
           id="todayDiet"
           value={todayDiet}
-          onChange={e => setTodayDiet(e.target.value)}
+          onChange={e => setTodayDiet(Number(e.target.value))}
           placeholder="Enter today's consumed calories"
         />
         <button onClick={handleTodayDietSubmit}>Submit</button>
       </div>
+
+      <ul>
+        {todayDietEntries.map((entry, index) => (
+          <li key={index}>Entry {index + 1}: {entry} calories</li>
+        ))}
+      </ul>
+
+<p>Total today's diet: {sumOfTodayDiet()} calories</p>
 
       {/* Placeholder for the graph */}
       <div id="calories-history-graph">
