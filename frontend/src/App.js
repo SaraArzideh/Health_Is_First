@@ -19,6 +19,7 @@ import ActivityTracker from './components/ActivityTracker';
 import BodyMetrics from './components/BodyMetrics';
 import NutritionTracker from './components/NutritionTracker';
 import LoginPage from './components/LoginPage';
+import Profile from './components/Profile';
 // CSS
 import './App.css';
 
@@ -48,6 +49,7 @@ function App() {
               <Route path="/activity" element={<ActivityTracker/>} />
               <Route path="/weight" element={<BodyMetrics/>} />
               <Route path="/diet" element={<NutritionTracker/>} />
+              <Route path="/profile" exact element={<Profile/>} />
             </Routes>
             <Footer/>
           </div>

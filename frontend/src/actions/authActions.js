@@ -4,12 +4,14 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const AUTH_ERROR = 'AUTH_ERROR';
+export const UPDATE_USER = "UPDATE_USER";
 export const SET_USER_ACTIVITY_GOAL = 'SET_USER_ACTIVITY_GOAL';
 export const SET_USER_TODAY_DIET = 'SET_USER_TODAY_DIET';
 export const SET_USER_TOTAL_TODAY_DIET = 'SET_USER_TOTAL_TODAY_DIET';
 export const SET_USER_OPTIMAL_DIET = 'SET_USER_OPTIMAL_DIET';
 export const SET_USER_CURRENT_WEIGHT ='SET_USER_CURRENT_WEIGHT';
 export const SET_USER= 'SET_USER';
+
 // Action Creators
 
 //User Activity Goal
@@ -96,6 +98,31 @@ export const signupUser = (userInfo) => {
          }
       } catch (error) {
          dispatch({ type: AUTH_ERROR, payload: 'Signup failed!' });
+      }
+   };
+};
+
+// update user's profile
+export const updateUser=(user)=>{
+   return async (dispatch, getState) => {
+      try {
+         // API call for update
+         const response = await fetch('http://localhost:5000/profile', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(user)
+         });
+
+         const data = await response.json();
+
+         if (response.ok) {
+            localStorage.setItem('user', JSON.stringify(data.user));
+            dispatch({ type: UPDATE_USER, payload: data.user });
+         } else {
+            dispatch({ type: AUTH_ERROR, payload: data.message });
+         }
+      } catch (error) {
+         dispatch({ type: AUTH_ERROR, payload: 'Profile Update failed!' });
       }
    };
 };

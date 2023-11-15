@@ -168,6 +168,7 @@ app.post("/logout",function(req,res) {
 app.use('/diet',isUserLogged, dietRoute);
 app.use('/weight',isUserLogged, weightRoute);
 app.use('/activity',isUserLogged, activityRoute);
+app.use('/profile',isUserLogged, userRoute);
 
 
 app.listen(PORT, () => {

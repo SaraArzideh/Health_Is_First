@@ -20,7 +20,7 @@ router.post('/login', loginUser);
 router.get('/profile', isUserLogged, getUserProfile);
     
 // Route to update user profile
-router.put('/goals/:userId', isUserLogged, updateUserProfile);
+router.put('/profile', isUserLogged, updateUserProfile);
 
 // Route to delete User
 router.delete('/profile', isUserLogged, deleteUser);    

@@ -218,7 +218,7 @@ p {
   padding: 10px 20px;
 }
 
-.navbar-links a, .navbar-links, .navbar-tex {
+.navbar-links a, .navbar-links, .navbar-tex, .nav-item {
   margin-right: 10px;
   font-family: Lato;
   font-size:20px ; 
@@ -402,4 +402,56 @@ background-color: #bae5ed;
   font-weight:600;
   cursor: pointer;
   background-color: #b8ca7200; 
+}
+
+/*Profile Page*/
+.profile-page {
+  max-width: 900px;
+  margin: auto;
+  padding: 10px;
+  background: #92b9bd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.profile-page .form-group label {
+  font-weight:500;
+  font-family: lato;
+  font-size:1.3vw;
+  margin-top: 5px;
+  margin-right: 500px; /* space between label and input */
+  white-space: nowrap; /* Keep label on the same line */
+  position:absolute;
+  width: 25px;
+}
+
+.profile-page .form-group {
+  display: absolute; /* Set form-group as a flex container */
+  justify-content: start;
+  align-items: center; /* Align items vertically */
+  margin-bottom: 3px; /* Space between form groups */
+}
+
+.profile-page .form-group input,
+.profile-page .form-group select,
+.profile-page .form-group textarea {
+  flex-grow: 1; /* Allows input to take up remaining space */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-left: 300px; /* space between label and input */
+  margin-bottom: 3px; /* space between label and input */
+  font-size:1.3vw;
+  position: flex;
+}
+/* Adjustments for checkbox, it doesn't need to grow to use full width */
+.profile-page .form-group .checkbox-group {
+  justify-content: flex-start; /* Aligns checkbox to the start of the flex container */
+  margin-left: 10px; /* Space between checkbox and label */
+  cursor: pointer;
+  background-color: #fafafa; /* Checkbox background */
+  margin-bottom: 15px;
+  font-size: 3px; /* size of the checkbox */
+  border: 3px solid #d1d1d1; /* Border color */
+  border-radius: 4px;
+  position: flex;
 }

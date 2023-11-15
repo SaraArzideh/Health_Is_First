@@ -28,6 +28,7 @@ function Navbar() {
       <>
         <span className="navbar-text welcome-message">Welcome, {user.username ||'Guest'}!</span>
         <button onClick={handleLogout}>Logout</button>
+        <Link to="/profile" className={`nav-item ${location.pathname === '/profile' ? 'active' : ''}`}>Profile</Link> 
       </>
     );
   } else {

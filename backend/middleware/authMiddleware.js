@@ -10,7 +10,7 @@ const authMiddleware = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, config.JWT_SECRET);
-        req.userId = decoded.id; // assuming the decoded JWT has an id field
+        req.userId = decoded.id; // the decoded JWT has an id field
         next();
     } catch (err) {
         res.status(401).json({ message: 'Token is not valid' });

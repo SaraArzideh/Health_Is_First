@@ -1,6 +1,6 @@
-// CRUD for user profile, user registration and user login
+// CRUD for user profile, registration and login
 
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs'); // For hashing passwords
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const config = require('../config');
@@ -101,12 +101,55 @@ const getUserProfile = async (req, res) => {
 // Update user profile
 const updateUserProfile = async (req, res) => {
     try {
+        const user = await User.findById(req.userId); // req.userId is set by the auth middleware
+
+        if (user) {
+            user.username = req.body.username || user.username;
+            user.email = req.body.email || user.email;
+            user.height = req.body.height || user.height;
+            user.currentWeight = req.body.currentWeight || user.currentWeight;
+            user.age = req.body.age || user.age;
+            user.activityGoal = req.body.activityGoal || user.activityGoal;
+            user.gender = req.body.gender || user.gender;
+            user.exceptionalSituation = req.body.exceptionalSituation || user.exceptionalSituation;
+            user.activityLevel = req.body.activityLevel || user.activityLevel;
+    
+            if (req.body.password) {
+            user.password = bcrypt.hashSync(req.body.password, 10);
+            }
+    
+            const updatedUser = await user.save();
+            res.json({
+            _id: updatedUser._id,
+            username: updatedUser.username,
+            email: updatedUser.email,
+            height: updatedUser.height,
+            age: updatedUser.age,
+            currentWeight: updatedUser.currentWeight,
+            activityGoal: updatedUser.activityGoal,
+            gender: updatedUser.gender,
+            exceptionalsituation:updatedUser.exceptionalSituation,
+            activityLevel:updatedUser.activityLevel,
+            todayDiet: updatedUser.todayDiet,
+            activities: updatedUser.activities
+            });
+        } else {
+            res.status(404);
+            throw new Error('User not found');
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+/*
         const updatedUser = await User.findByIdAndUpdate(req.userId, req.body, { new: true }).select('-password');
         res.json(updatedUser);
     } catch (err) {
         res.status(500).json({ message:'Server error' });
     }
 };
+*/
 
 // Delete user
 const deleteUser = async (req, res) => {
