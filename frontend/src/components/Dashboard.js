@@ -80,7 +80,6 @@ function Dashboard() {
           <div className="yearly metrics">Yearly:{/*D3.js, placeholder */}</div>     
         </section>
         </div>
-        <button onClick={toggleDashboard}>Close The Dashboard</button>
       </div>
     );
 }
