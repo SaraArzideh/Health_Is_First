@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 //import {setUser} from './actions/authActions';
 
 //context provider
-import { DashboardProvider } from './context/DashboardContext';
+import { useDashboard, DashboardProvider } from './context/DashboardContext';
 
 // Components
 import Navbar from './components/shared/Navbar';
@@ -23,7 +23,6 @@ import LoginPage from './components/LoginPage';
 import './App.css';
 
 function App() {
-
 /*  const dispatch = useDispatch();
 
   useEffect(() => {
