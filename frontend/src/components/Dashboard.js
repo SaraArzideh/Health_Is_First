@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import { useDashboard } from '../context/DashboardContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserActivityGoal } from '../actions/authActions';
-import { Link, useNavigate } from 'react-router-dom';
 import * as d3 from 'd3';
 
 // Simulated User Context to get user's progress data
@@ -81,7 +80,7 @@ function Dashboard() {
           <div className="yearly metrics">Yearly:{/*D3.js, placeholder */}</div>     
         </section>
         </div>
-
+        <button onClick={toggleDashboard}>Close The Dashboard</button>
       </div>
     );
 }
