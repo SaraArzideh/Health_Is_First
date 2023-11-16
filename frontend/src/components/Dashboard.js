@@ -44,8 +44,8 @@ function Dashboard() {
         {/* Visualization for Activity Progress */}
         <section className="activity-progress">
         
-          <h2>Your Activity Progress</h2>
-          <p>Your Current Daily Activity Goal is {activityGoal} minutes per day.</p>
+          <h2>Step by Step Progress 🏃‍♂️</h2>
+          <h3>Your Daily Activity Goal is {activityGoal} minutes.</h3>
 
           {/* Daily Activity Progress Visualization*/}
           <div className="daily activity">Daily:{/*D3.js, placeholder */}</div>
@@ -59,8 +59,8 @@ function Dashboard() {
 
         {/* Visualization for Diet Progress */}
         <section className="diet-progress">
-          <h2>Your Diet Progress</h2>
-          <p>Your Current Diet limit is to Consume {optimalDiet} Calories per day.</p>
+          <h2>Plate by Plate Tracking 🥗</h2>
+          <h3>Your Daily Diet Limit is {optimalDiet} Calories.</h3>
 
 
           {/* Daily Diet Progress Visualization*/}
@@ -75,8 +75,8 @@ function Dashboard() {
 
         {/* Visualization for Body Metrics Progress */}
         <section className="body-metrics-progress">
-          <h2>Your Body Metrics</h2>
-          <p>Your Current Body Mass Index is {BMI}.</p>
+          <h2> Measure Your Success 📊</h2>
+          <h3>Your Body Mass Index is {BMI}.</h3>
 
 
           {/* Daily Body Metrics Visualization*/}

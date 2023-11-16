@@ -36,6 +36,12 @@ h2 {
   margin-bottom: 1px;
   color: rgb(13, 13, 13);  
 }
+h3 {
+  font-size: 1.5vw;
+  margin-top: 15px;
+  margin-bottom: 1px;
+  color: rgb(13, 13, 13);  
+}
 
 p {
   font-size: 20px;
@@ -186,22 +192,22 @@ p {
   font-family: Lato;
   border-radius: 4px;
   color: rgb(0, 0, 0);
-  padding: 10px 15px;
+  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight:600;
   margin: 10px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  background-color: #b092bd; 
+  transition: background-color 0.3s ease;
   transition-duration: 0.4s; /* Animation */
-}
+  background-color: #4abe82;
+  }
 
 .btn:hover {
-  background-color: #7ed7e3; 
   color: white;
+  background-color: #ee3890;
 }
 
 /* Feedback Error Messages */
@@ -246,6 +252,7 @@ p {
   display:flex;
   justify-content: space-between;
   gap: 10px;  /* Provides spacing between the sections */
+  margin-top: 0px;
 }
 
 .dashboard-page .activity-progress,
@@ -465,4 +472,51 @@ background-color: #bae5ed;
   padding: 10px;
   font-family: lato;
   font-size:1.3vw;
+}
+/* home Page */
+.home-page .hero {
+  background: url('../public/BMIMessage.jpg') no-repeat center center/cover;
+  background-size:contain;
+  margin-top: 20px;
+  padding: 9rem 0;
+  color: #fff;
+  text-align: center;
+  border-radius: 20%;
+  border-top-style:ridge;
+  border-bottom-style:groove;
+}
+
+.hero h1 {
+  font-family: lato;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.hero p {
+  font-size: 2rem;
+  font-family: lato;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.home-page-logged-in .hero {
+  background-color: rgb(166, 119, 171);
+  background-size:cover;
+  margin-top: 1px;
+  padding: 0.2rem 0;
+  text-align: center;
+  border-radius: 10%;
+  margin-bottom: 0px;
+}
+.home-page-logged-in .hero h1 {
+  font-family: lato;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.home-page-logged-in .hero p {
+  font-size: 1.9rem;
+  font-family: lato;
+  font-weight: 600;
+  margin-bottom: 0;
 }

@@ -14,8 +14,8 @@ function HomePage() {
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
     //State for goals
-    const [activityGoal, setActivityGoal] = useState('');
-    const [dietGoal, setDietGoal] = useState('');
+    //const [activityGoal, setActivityGoal] = useState('');
+    //const [dietGoal, setDietGoal] = useState('');
 
     const { isDashboardOpen, toggleDashboard } = useDashboard();
 
@@ -24,37 +24,30 @@ function HomePage() {
 
     //Fetching user data from context
     const user= useContext(UserContext);
+  
+    // Determine the class for the container based on the login status
+    const containerClass = isLoggedIn ? "home-page-logged-in" : "home-page";
 
     return (
-      <div className="home-page">
-        <h1>Your Fitness Journey Starts Here</h1>
-
-        {user && (
-          <section className="set-goals">
-            <h2>Set Goals Section</h2>
-            <input 
-              type="number"
-              placeholder="Activity Goal (minutes per day)"
-              value={activityGoal}
-              onChange={(e) => setActivityGoal(e.target.value)}
-            />
-            <input 
-              type="number"
-              placeholder="Diet Goal (consumed calories per day)"
-              value={dietGoal}
-              onChange={(e) => setDietGoal(e.target.value)}
-            />
-            <button onClick={() => {/* submit goals to backend */ }}>Submit Goals</button>
-          </section>
-        )}
-        { isLoggedIn ?(
+     <div className={containerClass}>
+      <div className="hero">
+        {isLoggedIn ? (
+          <>
+            <h1>Welcome Back to Health Is First</h1>
+            <p>Here You can Track Your fitness journey</p>
             <button className='btn' onClick={toggleDashboard}>
-              {isDashboardOpen ? 'Close The Dashboard' : 'Open The Dashboard'}
+                {isDashboardOpen ? 'Close The Dashboard' : 'Open The Dashboard'}
             </button>
-        ):(
-            <button className='btn' onClick={()=>window.location.href="/signup" }>Start</button>
+          </>
+        ) : (
+          <>
+            <h1>Health Is First</h1>
+            <p>Your journey to a healthier life starts here</p>
+            <button className='btn' onClick={()=>window.location.href="/signup" }>Get Started</button>
+          </>
         )}
-        {isDashboardOpen && <Dashboard />}  
+      </div>
+      {isDashboardOpen && <Dashboard />}  
     </div>  
   );
 }
