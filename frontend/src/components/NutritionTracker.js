@@ -35,13 +35,13 @@ function NutritionTracker() {
   // Female user diet goal calculation
   if (user.gender === 'female') {
     switch (user.activityLevel) {
-      case 'low-activity':
+      case 'low-active':
         if (user.age >= 14 && user.age <= 18) calculatedOptimalDiet = 1800;
         else if (user.age >= 19 && user.age <= 30) calculatedOptimalDiet = 1900; // Averuser.age between 1800 and 2000
         else if (user.age >= 31 && user.age <= 50) calculatedOptimalDiet = 1800;
         else if (user.age > 51) calculatedOptimalDiet = 1600;
         break;
-      case 'moderate-activity':
+      case 'moderate-active':
         if (user.age >= 14 && user.age <= 18) calculatedOptimalDiet = 2000;
         else if (user.age >= 19 && user.age <= 30) calculatedOptimalDiet = 2100; // Average between 2000 and 2200
         else if (user.age >= 31 && user.age <= 50) calculatedOptimalDiet = 2000;
@@ -59,13 +59,13 @@ function NutritionTracker() {
     }
   }else if (user.gender === 'male'|| user.gender === 'nonbinary') {
     switch (user.activityLevel) {
-      case 'low-activity':
+      case 'low-active':
         if (user.age >= 14 && user.age <= 18) calculatedOptimalDiet = 2200; // Average between 2000 and 2400
         else if (user.age >= 19 && user.age <= 30) calculatedOptimalDiet = 2500; // Average between 2400 and 2600
         else if (user.age >= 31 && user.age <= 50) calculatedOptimalDiet = 2300; // Average between 2200 and 2400
         else if (user.age > 51) calculatedOptimalDiet = 2100; // Average between 2000 and 2200
         break;
-      case 'moderate-activity':
+      case 'moderate-active':
         if (user.age >= 14 && user.age <= 18) calculatedOptimalDiet = 2600; // Average between 2400 and 2800
         else if (user.age >= 19 && user.age <= 30) calculatedOptimalDiet = 2700; // Average between 2600 and 2800
         else if (user.age >= 31 && user.age <= 50) calculatedOptimalDiet = 2500; // Average between 2400 and 2600
