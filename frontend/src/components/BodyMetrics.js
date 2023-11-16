@@ -10,8 +10,16 @@ import { Link } from 'react-router-dom';
 
 function BodyMetrics() {
   const dispatch = useDispatch();
+
+  // To solve the non logged-in viewer, making an empty default object
+  const defaultUser = {
+    currentWeight: 0,
+    height: 0,
+  };
+  
   // Pull user data from Redux store
-  const userData=useSelector(state=> state.auth.user)
+  const userData=useSelector(state=> state.auth.user)|| defaultUser;
+
   const [showGraph, setShowGraph]=useState(false);
 
   const [newCurrentWeight, setNewCurrentWeight] = useState(userData.currentWeight);
@@ -96,7 +104,7 @@ function BodyMetrics() {
                 <p>Normal Weight Range for you is {((((userData.height)/100)**2)*18.5).toFixed(1)} - {((((userData.height)/100)**2)*25).toFixed(1)} Kg!</p>
               </>
             )}
-          </div>
+        </div>
         <button onClick={toggleWeightHistory}>View Your Body Metric Progress!</button>
         {showGraph && <WeightHistoryGraph />}
 

@@ -2,7 +2,8 @@ import React from 'react';
 import { useContext } from 'react';
 import { useDashboard } from '../context/DashboardContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserActivityGoal } from '../actions/authActions';
+// mport { setUserActivityGoal } from '../actions/authActions';
+import {optimalDiet} from '../components/NutritionTracker'
 import * as d3 from 'd3';
 
 // Simulated User Context to get user's progress data
@@ -10,8 +11,13 @@ const UserContext= React.createContext();
 
 function Dashboard() {
 
+    // To solve the non logged-in viewer, making an empty default object
+    const defaultUser = {
+      currentWeight: 0,
+    };
+
   //pull user data from redux state
-  const userData= useSelector(state=> state.auth.user);
+  const userData= useSelector(state=> state.auth.user)|| defaultUser;
   const BMI = (userData.currentWeight / ((userData.height / 100) ** 2)).toFixed(1);
   const { isDashboardOpen, toggleDashboard } = useDashboard();
 
@@ -19,12 +25,15 @@ function Dashboard() {
 
   // Get the goal from the user state inside authReducer
   const activityGoal = useSelector(state => state.auth.user?.activityGoal||0); 
-  const dietGoal = useSelector (state=> state.auth.user?.dietGoal||0);
+  const optimalDiet = useSelector (state=> state.auth.user?.optimalDiet||0);
+ 
   
+/*
   // Function to handle goal setting from the dashboard
   const handleDashboardSetGoal = (goal) => {
       dispatch(setUserActivityGoal(goal));
   };
+*/
 
     // Rendering
     return (
@@ -51,7 +60,7 @@ function Dashboard() {
         {/* Visualization for Diet Progress */}
         <section className="diet-progress">
           <h2>Your Diet Progress</h2>
-          <p>Your Current Daily Diet Goal is to Consume {dietGoal} Calories per day.</p>
+          <p>Your Current Diet limit is to Consume {optimalDiet} Calories per day.</p>
 
 
           {/* Daily Diet Progress Visualization*/}
