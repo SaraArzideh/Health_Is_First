@@ -1,9 +1,14 @@
 import React, {useState, useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUser } from '../actions/userAction'; 
+import { updateUser } from '../actions/userAction';
+import {useNavigate} from 'react-router-dom'; 
+import {toast} from 'react-toastify';
+
 
 const Profile = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
+
     const userInfo = useSelector(state => state.auth ) || {};
     const [username, setUsername] = useState(userInfo.user.username ||'');
     const [email, setEmail] = useState(userInfo.user.email || '');
@@ -24,15 +29,25 @@ const Profile = () => {
         setCurrentWeight(userInfo.user.currentWeight || '');
         setAge(userInfo.user.age);
         setActivityGoal(userInfo.user.activityGoal || '');
-        setExceptionalSituation(userInfo.user.exceptionalSituation || '');
+        setExceptionalSituation(!!userInfo.user.exceptionalSituation);
         setGender(userInfo.user.gender);
         setActivityLevel(userInfo.user.activityLevel || '');
       }
     }, [userInfo]);
   
     const submitHandler = (e) => {
+      debugger;
       e.preventDefault();
-      dispatch(updateUser({ username, email, height, currentWeight, age, activityGoal, exceptionalSituation, gender, activityLevel}));
+      dispatch(updateUser({ username, email, height, currentWeight, age, activityGoal, exceptionalSituation, gender, activityLevel}))
+      .then(() => {
+        toast.dismiss(); // Dismiss any existing toasts
+        toast.success("Profile updated successfully!");
+        navigate("/"); // Redirect to home page
+      })
+      .catch((error) => {
+        toast.dismiss(); // Dismiss any existing toasts
+        toast.error("Failed to update profile.");
+      });    
     };
 
     // For select inputs
@@ -52,7 +67,6 @@ const Profile = () => {
 
     return (
       <div className="profile-page">
-        {userInfo ? (
           <form onSubmit={submitHandler}>
             <div className="form-group">
               <label htmlFor="username">Username:</label>
@@ -61,7 +75,7 @@ const Profile = () => {
 
             <div className="form-group">
             <label htmlFor="email">Email:</label>
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="email" value={email} readOnly />
             </div>
 
             <div className="form-group">
@@ -86,7 +100,7 @@ const Profile = () => {
 
             <div className="form-group">
             <label htmlFor="gender">Gender:</label>  
-              <select id="gender" name="gender" onChange={handleSelectChange}>
+              <select id="gender" name="gender" value={gender} onChange={handleSelectChange}>
                 <option className='option' value="male">Male</option>
                 <option className='option' value="female">Female</option>
                 <option className='option' value="nonbinary">Non-binary</option>
@@ -95,7 +109,7 @@ const Profile = () => {
 
             <div className="form-group">
             <label htmlFor="activityLevel">Life-Style:</label>  
-              <select id="activityLevel" name="activityLevel" onChange={handleSelectChange}>
+              <select id="activityLevel" name="activityLevel" value={activityLevel} onChange={handleSelectChange}>
                 <option className='option' value="low-active">Low-Active</option>
                 <option className='option' value="moderate-active">Moderate-Active</option>
                 <option className='option' value="active">Active</option>
@@ -107,15 +121,11 @@ const Profile = () => {
               <input 
                 type="checkbox"
                 id="exceptionalSituation"
-                name="exceptionalSituation"
-                checked = {userInfo.user.exceptionalSituation}
+                checked = {exceptionalSituation}
                 onChange={handleCheckboxChange} />
             </div>
             <button type="submit">Update Profile</button>
           </form>
-        ) : (
-          <p>Loading user information...</p>
-        )}
       </div>
     );
   };
