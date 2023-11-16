@@ -8,7 +8,7 @@ const {isUserLogged} = require ('../middleware/authMiddleware');
 //router.post('/weight',isUserLogged, addWeight);
 router.put('/weight',isUserLogged, updateWeight);
 
-router.get('/weight/history', isUserLogged, getWeightHistory);
+router.get('/weight', isUserLogged, getWeightHistory);
 
 //router.get('/weight', isUserLogged, getWeight);
 

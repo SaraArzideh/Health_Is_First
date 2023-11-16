@@ -5,7 +5,8 @@ import {
     AUTH_ERROR,
     SET_USER_ACTIVITY_GOAL,
     SET_USER_TODAY_DIET,
-    SET_USER 
+    SET_USER,
+    SET_USER_OPTIMAL_DIET
 } from '../actions/authActions';
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
     activityGoal: null,
     todayDiet: null,
     currentWeight:null,
+    optimalDiet: null,
 };
  
  const authReducer = (state = initialState, action) => {
@@ -53,7 +55,14 @@ const initialState = {
                     ...state.user,
                     todayDiet: action.payload
                 }
-            };        
+            };
+
+        case SET_USER_OPTIMAL_DIET:
+            return{
+                ...state,
+                optimalDiet: action.payload,
+            };
+
         default:
             return state;
     }

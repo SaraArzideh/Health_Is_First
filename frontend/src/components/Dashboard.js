@@ -2,8 +2,9 @@ import React from 'react';
 import { useContext } from 'react';
 import { useDashboard } from '../context/DashboardContext';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserData } from '../services/api';
+import { setUserProfile, setUserOptimalDiet, setUsertotalTodayDiet } from '../actions/authActions';
 // mport { setUserActivityGoal } from '../actions/authActions';
-import {optimalDiet} from '../components/NutritionTracker'
 import * as d3 from 'd3';
 
 // Simulated User Context to get user's progress data
@@ -25,7 +26,7 @@ function Dashboard() {
 
   // Get the goal from the user state inside authReducer
   const activityGoal = useSelector(state => state.auth.user?.activityGoal||0); 
-  const optimalDiet = useSelector (state=> state.auth.user?.optimalDiet||0);
+  const optimalDiet = useSelector (state=> state.auth.optimalDiet||0);
  
   
 /*
