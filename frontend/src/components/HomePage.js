@@ -33,8 +33,8 @@ function HomePage() {
       <div className="hero">
         {isLoggedIn ? (
           <>
-            <h1>Welcome Back to Health Is First</h1>
-            <p>Here You can Track Your fitness journey</p>
+            <h1>Welcome back to Health Is First</h1>
+            <p>Here you can track your fitness journey</p>
             <button className='btn' onClick={toggleDashboard}>
                 {isDashboardOpen ? 'Close The Dashboard' : 'Open The Dashboard'}
             </button>
