@@ -455,3 +455,14 @@ background-color: #bae5ed;
   border-radius: 4px;
   position: flex;
 }
+
+/* Diet Page */
+.diet-page .form-group {
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  margin-top: 15px;
+  padding: 10px;
+  font-family: lato;
+  font-size:1.3vw;
+}
