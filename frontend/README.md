@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+Health Is First - User Manual
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to Health Is First
+Congratulations on taking the first step towards a healthier lifestyle! Health Is First is designed to help you keep track of your fitness goals, dietary intake, weight progress, and overall activity level. This manual will guide you through using the application to its full potential.
 
-## Available Scripts
+Getting Started
+Creating an Account
+Navigate to the SignUp page from the Home screen. 
+Fill in the required fields, such as Username, Email, Password, Age, Height, and Weight.
+Choose your activity level and set your daily activity and diet goals.
+Submit your information to create your personal fitness profile.
+Logging In
+On the Home page, click on the Login button.
+Enter your Username and Password to access your dashboard.
 
-In the project directory, you can run:
+Main Features
+o	Dashboard
+Access an overview of your fitness progress including activity, diet, and body metrics.
+o	Activity Tracker
+Log your daily activities by type and duration. Track your progress towards your daily activity goals.
+o	Body Metrics
+Enter your current weight and view your BMI. Receive current situation based on your BMI category.
+o	Nutrition Tracker
+Log your daily food intake and compare it with your optimal diet goal.
 
-### `npm start`
+Navigation
+Home: Return to the Home page at any time by clicking the Home link in the navigation bar, or Home link in Tracker windows.
+Dashboard: View your summarized progress by clicking the Dashboard link in the navigation bar.
+Activity: Record and review your physical activities via the Activity Tracker.
+Weight: Update your weight and your Body Mass Index, and Body metric situation in compare to normal range in the Body Metrics section.
+Diet: Get your diet limit and keep track of your dietary intake with the Nutrition Tracker.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Profile and Settings
+Access your profile to update personal information or change your fitness goals. 
+Log out of the application to secure your data.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![homePage](https://github.com/SaraArzideh/React_Skill_Building/assets/145482976/7c2cf036-9bf1-479b-ba3a-4a21509b3379)
