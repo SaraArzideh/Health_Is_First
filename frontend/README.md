@@ -1,4 +1,9 @@
-Health Is First - User Manual
+# Health Is First
+## Health and Fitness Tracking Application 
+
+![homePage](https://github.com/SaraArzideh/React_Skill_Building/assets/145482976/7c2cf036-9bf1-479b-ba3a-4a21509b3379)
+
+## User Manual
 
 Welcome to Health Is First
 Congratulations on taking the first step towards a healthier lifestyle! Health Is First is designed to help you keep track of your fitness goals, dietary intake, weight progress, and overall activity level. This manual will guide you through using the application to its full potential.
@@ -33,5 +38,3 @@ Diet: Get your diet limit and keep track of your dietary intake with the Nutriti
 Profile and Settings
 Access your profile to update personal information or change your fitness goals. 
 Log out of the application to secure your data.
-
-![homePage](https://github.com/SaraArzideh/React_Skill_Building/assets/145482976/7c2cf036-9bf1-479b-ba3a-4a21509b3379)
