@@ -13,7 +13,7 @@ export const fetchUserData = () => {
   const token = localStorage.getItem('token'); // Retrieve the stored token
   return fetch(`${BASE_URL}/user/data`,{
     headers: {
-      'Content-Type':'aapplication/json',
+      'Content-Type':'application/json',
       'auth-token':token  //attach the token in the request headers
     }
   })

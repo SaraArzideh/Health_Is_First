@@ -131,7 +131,7 @@ const updateUserProfile = async (req, res) => {
             exceptionalsituation:updatedUser.exceptionalSituation,
             activityLevel:updatedUser.activityLevel,
             todayDiet: updatedUser.todayDiet,
-            activities: updatedUser.activities
+            newActivity: updatedUser.newActicity
             });
         } else {
             res.status(404);
