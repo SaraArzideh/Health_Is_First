@@ -3,7 +3,7 @@ body, .App {
   font-family: Lato;
   text-align: center;
   margin: 0;
-  background: linear-gradient(to right, #4abe82,#ee3890);
+  background: linear-gradient(to right, #4abe82,#889a8a,#ee3890);
   padding: 0;
 }
 
